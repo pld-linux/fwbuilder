@@ -1,24 +1,20 @@
 Summary:	Firewall Builder
 Summary(pl):	Narzêdzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	1.1.2
+Version:	2.0.0
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
-# Source0-md5:	54a57c9e82da151b59afe0a1c0e66586
-Patch0:		%{name}-modulesdir.patch
+# Source0-md5:	167ba3ce4b2cacf3018f799b9cee5743
+Patch0:		%{name}-configure.patch
 URL:		http://www.fwbuilder.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gdk-pixbuf-devel
-BuildRequires:	gtkmm1-devel >= 1.2.3
-BuildRequires:	imlib-devel
-BuildRequires:	libfwbuilder-devel >= 1.0.1
-BuildRequires:	libtool
-BuildRequires:	libxml2-devel
-BuildRequires:	libxslt-devel
-Requires:	libfwbuilder >= 1.0.1
+BuildRequires:	libfwbuilder-devel >= 2.0.0
+BuildRequires:	qmake
+BuildRequires:	qt-devel >= 3.0
+Requires:	libfwbuilder >= 2.0.0
 Obsoletes:	fwbuilder-doc
 Obsoletes:	fwbuilder-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -175,63 +171,46 @@ Pliki specyficzne dla MacOS X.
 
 %prep
 %setup -q
-%patch -p1
-
-# don't call autoheader, it would destroy important parts of config.h
-echo '#undef MODULES_DIR' >> config.h.in
+%patch0 -p1
 
 %build
-%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %configure \
-	--enable-auto-docdir \
-	--disable-static \
-	--with-templatedir=%{_datadir}/fwbuilder \
-	--with-iconsdir=%{_pixmapsdir}/fwbuilder
+	QMAKE_CXXFLAGS_RELEASE="%{rpmcflags}" \
+	--with-templatedir=%{_datadir}/fwbuilder
 
-%{__make}
+%{__make} \
+	QTDIR=/usr
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT%{_pixmapsdir}/fwbuilder
-install src/icons/*.xpm $RPM_BUILD_ROOT%{_pixmapsdir}/fwbuilder
-install src/icons/host*.png $RPM_BUILD_ROOT%{_pixmapsdir}/fwbuilder
-
-%find_lang %{name}
+	QTDIR=/usr \
+	DDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
-%doc doc/AUTHORS doc/ChangeLog doc/Credits doc/NEWS doc/README* doc/TODO
-%doc doc/examples doc/testing_new_compiler
-%doc doc/*.html
+%doc doc/{AUTHORS,ChangeLog,Credits,README*,*.html}
 %attr(755,root,root) %{_bindir}/fwbuilder
 %attr(755,root,root) %{_bindir}/fwblookup
 %attr(755,root,root) %{_bindir}/fwb_compile_all
 %attr(755,root,root) %{_bindir}/fwbedit
-%dir %{_libdir}/%{name}
-%dir %{_libdir}/%{name}/modules
-%dir %{_libdir}/%{name}/modules/gui
 %dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/platform
+%{_datadir}/%{name}/*.xml
+%dir %{_datadir}/%{name}/locale
+%lang(fr) %{_datadir}/%{name}/locale/fwbuilder_fr.qm
+%lang(ru) %{_datadir}/%{name}/locale/fwbuilder_ru.qm
+%lang(vi) %{_datadir}/%{name}/locale/fwbuilder_vi.qm
 %dir %{_datadir}/%{name}/os
-%{_datadir}/%{name}/*.*
-%{_datadir}/%{name}/gtkrc
-%{_datadir}/%{name}/migration
-%{_datadir}/%{name}/filters
+%{_datadir}/%{name}/os/linksys.xml
 %{_datadir}/%{name}/os/unknown_os.xml
+%dir %{_datadir}/%{name}/platform
 %{_datadir}/%{name}/platform/unknown.xml
-%{_datadir}/bug-buddy/bugzilla/*
-%{_datadir}/bug-buddy/xml/*
-%{_datadir}/bug-buddy/fwbuilder*
-%{_pixmapsdir}/%{name}
 %{_mandir}/man1/fwbuilder*
 %{_mandir}/man1/fwblookup*
 %{_mandir}/man1/fwb_compile_all*
@@ -245,63 +224,52 @@ rm -rf $RPM_BUILD_ROOT
 %files compiler-iptables
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fwb_ipt
-%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_iptables_dlg.so
 %{_datadir}/%{name}/platform/iptables.xml
 %{_mandir}/man1/fwb_ipt*
 
 %files compiler-ipfilter
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fwb_ipf
-%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_ipf_dlg.so
 %{_datadir}/%{name}/platform/ipf.xml
 %{_mandir}/man1/fwb_ipf*
 
 %files compiler-openbsd-pf
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fwb_pf
-%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_pf_dlg.so
 %{_datadir}/%{name}/platform/pf.xml
 %{_mandir}/man1/fwb_pf*
 
 %files compiler-cisco-pix
 %defattr(644,root,root,755)
 #%attr(755,root,root) %{_bindir}/fwb_pix
-%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_pix_dlg.so
 %{_datadir}/%{name}/platform/pix.xml
 #%%{_mandir}/man1/fwb_pix*
 
 %files compiler-freebsd-ipfw
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fwb_ipfw
-%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_ipfw_dlg.so
 %{_datadir}/%{name}/platform/ipfw.xml
 
 %files platform-linux24
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_linux24_dlg.so
 %{_datadir}/%{name}/os/linux24.xml
 
 %files platform-freebsd
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_freebsd_dlg.so
 %{_datadir}/%{name}/os/freebsd.xml
 
 %files platform-openbsd
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_openbsd_dlg.so
 %{_datadir}/%{name}/os/openbsd.xml
 
 %files platform-cisco-pix
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_pix_os_dlg.so
 %{_datadir}/%{name}/os/pix_os.xml
 
 %files platform-solaris
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_solaris_dlg.so
 %{_datadir}/%{name}/os/solaris.xml
 
 %files platform-macosx
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_macosx_dlg.so
 %{_datadir}/%{name}/os/macosx.xml
