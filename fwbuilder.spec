@@ -20,8 +20,6 @@ BuildRequires:	libxslt-devel
 Requires:	libfwbuilder >= 0.10.12
 Obsoletes:	fwbuilder-doc fwbuilder-devel
 
-%define         _prefix         /usr/X11R6
-%define         _mandir         %{_datadir}/man
 
 %description
 Firewall administration toolkit.
