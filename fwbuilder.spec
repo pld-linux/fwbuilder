@@ -1,12 +1,12 @@
 Summary:	Firewall Builder
 Summary(pl):	Narzêdzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	1.0.11
+Version:	1.1.2
 Release:	1
 License:	GPL
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-# Source0-md5:	03f013f0f02472c91845e3d6fd50720a
+Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
+# Source0-md5:	54a57c9e82da151b59afe0a1c0e66586
 Patch0:		%{name}-modulesdir.patch
 URL:		http://www.fwbuilder.org/
 BuildRequires:	autoconf
@@ -33,7 +33,7 @@ Narzêdzie do tworzenia i administracji firewallami.
 Summary:	Install script for Firewall Builder rules
 Summary(pl):	Skrypt instaluj±cy regu³ki tworzone przez Firewall Buildera
 Group:		Applications/System
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description install
 Install script for Firewall Builder rules.
@@ -45,7 +45,7 @@ Skrypt instaluj±cy regu³ki tworzone przez Firewall Buildera.
 Summary:	ipfilter compiler for Firewall Builder
 Summary(pl):	Kompilator ipfilter dla Firewall Buildera
 Group:		Applications/System
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description compiler-ipfilter
 ipfilter compiler for Firewall Builder.
@@ -57,7 +57,7 @@ Kompilator ipfilter dla Firewall Buildera.
 Summary:	iptables compiler for Firewall Builder
 Summary(pl):	Kompilator iptables dla Firewall Buildera
 Group:		Applications/System
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description compiler-iptables
 iptables compiler for Firewall Builder.
@@ -69,7 +69,7 @@ Kompilator iptables dla Firewall Buildera.
 Summary:	OpenBSD pf compiler for Firewall Builder
 Summary(pl):	Kompilator OpenBSD pf dla Firewall Buildera
 Group:		Applications/System
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description compiler-openbsd-pf
 OpenBSD pf compiler for Firewall Builder.
@@ -81,7 +81,7 @@ Kompilator OpenBSD pf dla Firewall Buildera.
 Summary:	Cisco PIX compiler for Firewall Builder
 Summary(pl):	Kompilator Cisco PIX dla Firewall Buildera
 Group:		Applications/System
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description compiler-cisco-pix
 Cisco PIX compiler for Firewall Builder.
@@ -93,7 +93,7 @@ Kompilator Cisco PIX dla Firewall Buildera.
 Summary:	FreeBSD ipfw compiler for Firewall Builder
 Summary(pl):	Kompilator FreeBSD ipfw dla Firewall Buildera
 Group:		Applications/System
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description compiler-freebsd-ipfw
 FreeBSD ipfw compiler for Firewall Builder.
@@ -105,7 +105,7 @@ Kompilator FreeBSD ipfw dla Firewall Buildera.
 Summary:	Linux 2.4 specific files
 Summary(pl):	Pliki specyficzne dla Linuksa 2.4
 Group:		Applications/System
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description platform-linux24
 Linux 2.4 specific files.
@@ -117,7 +117,7 @@ Pliki specyficzne dla Linuksa 2.4.
 Summary:	FreeBSD specific files
 Summary(pl):	Pliki specyficzne dla FreeBSD
 Group:		Applications/System
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description platform-freebsd
 FreeBSD specific files.
@@ -129,7 +129,7 @@ Pliki specyficzne dla FreeBSD.
 Summary:	OpenBSD specific files
 Summary(pl):	Pliki specyficzne dla OpenBSD
 Group:		Applications/System
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description platform-openbsd
 OpenBSD specific files.
@@ -141,7 +141,7 @@ Pliki specyficzne dla OpenBSD.
 Summary:	Cisco PIX specific files
 Summary(pl):	Pliki specyficzne dla Cisco PIX
 Group:		Applications/System
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description platform-cisco-pix
 Cisco PIX specific files.
@@ -153,7 +153,7 @@ Pliki specyficzne dla Cisci PIX.
 Summary:	Solaris specific files
 Summary(pl):	Pliki specyficzne dla Solarisa
 Group:		Applications/System
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description platform-solaris
 Solaris specific files.
@@ -165,7 +165,7 @@ Pliki specyficzne dla Solarisa.
 Summary:	MacOS X specific files
 Summary(pl):	Pliki specyficzne dla MacOS X
 Group:		Applications/System
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description platform-macosx
 MacOS X specific files.
