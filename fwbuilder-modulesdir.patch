@@ -48,9 +48,9 @@
  
  
  
---- fwbuilder-1.0.10/configure.in.orig	Wed May 14 08:55:29 2003
-+++ fwbuilder-1.0.10/configure.in	Wed Jul 23 16:04:57 2003
-@@ -29,7 +29,7 @@
+--- fwbuilder-1.1.2/configure.in.orig	2003-12-19 08:17:33.000000000 +0100
++++ fwbuilder-1.1.2/configure.in	2004-06-06 00:55:56.882542056 +0200
+@@ -37,7 +37,7 @@
  AC_SUBST(FWB_VERSION)
  
  AC_SUBST(RELEASE_NUM)
@@ -59,7 +59,7 @@
  
  AC_SUBST(REQUIRED_LIBFWBUILDER_VERSION)
  AC_SUBST(LIBFWBUILDER_SOMAJOR)
-@@ -39,7 +39,7 @@
+@@ -47,7 +47,7 @@
  
  
  PACKAGE=fwbuilder
@@ -68,7 +68,7 @@
  AC_SUBST(PACKAGE)
  
  AM_INIT_AUTOMAKE($PACKAGE, $VERSION)
-@@ -90,6 +90,7 @@
+@@ -98,6 +98,7 @@
  
  
  AC_ARG_WITH(templatedir, [  --with-templatedir=DIR  Specify directory path for fwbuilder template files ])
@@ -76,7 +76,7 @@
  AC_ARG_WITH(iconsdir,    [  --with-iconsdir=DIR     Specify directory path for icons ])
  AC_ARG_WITH(docdir,      [  --with-docdir=DIR       Specify directory path for fwbuilder 
                            documentation files  ])
-@@ -113,12 +113,18 @@
+@@ -120,12 +121,18 @@
  dnl   path
  
  if test "x$with_templatedir" != "x"; then
@@ -98,7 +98,7 @@
  AC_SUBST(VERSION)
  
  if test "x$with_iconsdir" != "x"; then
-@@ -157,7 +157,7 @@
+@@ -158,7 +165,7 @@
  AC_MSG_CHECKING(whether we should define __PRAGMA_REDEFINE_EXTNAME)
  case "$build_os" in
    solaris*)
@@ -107,7 +107,7 @@
      AC_MSG_RESULT(yes)
      ;;
    *)
-@@ -168,11 +168,11 @@
+@@ -169,11 +176,11 @@
  AC_MSG_CHECKING(the file extension of the dynamically loadable modules)
  case "$build_os" in
    *darwin*)
@@ -121,30 +121,25 @@
      AC_MSG_RESULT(so)
      ;;
  esac
-@@ -180,11 +180,11 @@
- AC_MSG_CHECKING(whether we should prepend external symbol names with underscore)
- case "$build_os" in
-   *darwin*)
--    AC_DEFINE_UNQUOTED(EXTERNAL_FUNC_NAME_PREFIX, "_")
-+    AC_DEFINE_UNQUOTED(EXTERNAL_FUNC_NAME_PREFIX, "_", [function name prefix])
-     AC_MSG_RESULT(yes)
-     ;;
-   *)
--    AC_DEFINE_UNQUOTED(EXTERNAL_FUNC_NAME_PREFIX, )
-+    AC_DEFINE_UNQUOTED(EXTERNAL_FUNC_NAME_PREFIX, , [function name prefix])
-     AC_MSG_RESULT(no)
-     ;;
- esac
-@@ -278,7 +278,7 @@
+@@ -190,7 +197,7 @@
+ dnl     ;;
+ dnl esac
+ 
+-AC_DEFINE_UNQUOTED(EXTERNAL_FUNC_NAME_PREFIX, )
++AC_DEFINE_UNQUOTED(EXTERNAL_FUNC_NAME_PREFIX, , [function name prefix])
+ 
+ AC_ARG_ENABLE(libfwbuilder-check, [  --disable-libfwbuilder-check   Internal: used to regenerate fwbuilder build environment when libfwbuilder is not installed (yet)],
+          [CHECK_LIBFWBUILDER="no"], [CHECK_LIBFWBUILDER="yes"]) 
+@@ -281,7 +288,7 @@
  fi
  fi
  
 -AC_DEFINE_UNQUOTED(LIBFWBUILDER_VERSION, "$LIBFWBUILDER_VERSION")
 +AC_DEFINE_UNQUOTED(LIBFWBUILDER_VERSION, "$LIBFWBUILDER_VERSION", [libfwbuilder version])
  
- dnl
- dnl On FreeBSD glib-config is called glib12-config, but standard AM_PATH_GLIB
-@@ -470,7 +470,7 @@
+ dnl TODO: remove this once we get rid of the old iptables compiler 
+ dnl  all other modules do not need separate GLIB_CFLAGS and GLIB_LIBS 
+@@ -462,7 +469,7 @@
     ofstream strm(1);
  , 
    AC_MSG_RESULT(yes)
@@ -153,7 +148,7 @@
  , 
    AC_MSG_RESULT(no)
  )
-@@ -486,7 +486,7 @@
+@@ -478,7 +485,7 @@
     dlopen("",RTLD_LAZY);
  , 
    AC_MSG_RESULT(yes)
@@ -162,7 +157,7 @@
  , 
    AC_MSG_RESULT(no)
  
-@@ -497,7 +497,7 @@
+@@ -489,7 +496,7 @@
     dlopen("",DL_LAZY);
  , 
      AC_MSG_RESULT(yes)
@@ -171,7 +166,7 @@
  , 
      AC_MSG_RESULT(no)
      AC_MSG_ERROR([Can not determine valid value for the second parameter for dlopen])
-@@ -692,16 +692,16 @@
+@@ -690,16 +697,16 @@
  DOCDIRPATH=`dirname ${DOCDIR}`
  
  AC_SUBST(OS)
