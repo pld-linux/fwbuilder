@@ -1,14 +1,14 @@
-Name:		fwbuilder
 Summary:	Firewall Builder
 Summary(pl):	Narzêdzie do tworzenia firewalli
-URL:		http://www.fwbuilder.org/
+Name:		fwbuilder
 Version:	1.0.10
 Release:	1
 License:	GPL
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 # Source0-md5:	a2fbe778af33d0227af013d69c69411b
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Patch0:		%{name}-modulesdir.patch
+URL:		http://www.fwbuilder.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gdk-pixbuf-devel
@@ -19,6 +19,7 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel
 BuildRequires:	libxslt-devel
 Requires:	libfwbuilder >= 1.0.0
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	fwbuilder-doc
 Obsoletes:	fwbuilder-devel
 
@@ -89,9 +90,9 @@ Cisco PIX compiler for Firewall Builder.
 Kompilator Cisco PIX dla Firewall Buildera.
 
 %package compiler-freebsd-ipfw
-Summary:  FreeBSD ipfw compiler for Firewall Builder
-Summary(pl):  Kompilator FreeBSD ipfw dla Firewall Buildera
-Group:    Applications/System
+Summary:	FreeBSD ipfw compiler for Firewall Builder
+Summary(pl):	Kompilator FreeBSD ipfw dla Firewall Buildera
+Group:		Applications/System
 Requires: %{name} = %{version}
                                                                                 
 %description compiler-freebsd-ipfw
@@ -102,7 +103,7 @@ Kompilator FreeBSD ipfw dla Firewall Buildera.
 
 %package platform-linux24
 Summary:	Linux 2.4 specific files
-Summary(pl): Pliki specyficzne dla Linuksa 2.4
+Summary(pl):	Pliki specyficzne dla Linuksa 2.4
 Group:		Applications/System
 Requires:	%{name} = %{version}
 
@@ -161,10 +162,10 @@ Solaris specific files.
 Pliki specyficzne dla Solarisa.
 
 %package platform-macosx
-Summary:  MacOS X specific files
+Summary:	MacOS X specific files
 Summary(pl):	Pliki specyficzne dla MacOS X
-Group:    Applications/System
-Requires: %{name} = %{version}
+Group:		Applications/System
+Requires:	%{name} = %{version}
 
 %description platform-macosx
 MacOS X specific files.
@@ -174,6 +175,10 @@ Pliki specyficzne dla MacOS X.
 
 %prep
 %setup -q
+%patch -p1
+
+# don't call autoheader, it would destroy important parts of config.h
+echo '#undef MODULES_DIR' >> config.h.in
 
 %build
 %{__libtoolize}
@@ -183,7 +188,8 @@ Pliki specyficzne dla MacOS X.
 	--enable-auto-docdir \
 	--disable-static \
 	--with-templatedir=%{_datadir}/fwbuilder \
-	--with-iconsdir=%{_pixmapsdir}/fwbuilder/
+	--with-iconsdir=%{_pixmapsdir}/fwbuilder
+
 %{__make}
 
 %install
@@ -206,11 +212,12 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/*.html
 %attr(755,root,root) %{_bindir}/fwbuilder
 %attr(755,root,root) %{_bindir}/fwblookup
+%dir %{_libdir}/%{name}
+%dir %{_libdir}/%{name}/modules
+%dir %{_libdir}/%{name}/modules/gui
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/platform
 %dir %{_datadir}/%{name}/os
-%dir %{_datadir}/%{name}/modules
-%dir %{_datadir}/%{name}/modules/gui
 %{_datadir}/%{name}/*.*
 %{_datadir}/%{name}/gtkrc
 %{_datadir}/%{name}/migration
@@ -232,63 +239,63 @@ rm -rf $RPM_BUILD_ROOT
 %files compiler-iptables
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fwb_ipt
-%attr(755,root,root) %{_datadir}/%{name}/modules/gui/lib_iptables_dlg.so
+%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_iptables_dlg.so
 %{_datadir}/%{name}/platform/iptables.xml
 %{_mandir}/man1/fwb_ipt*
 
 %files compiler-ipfilter
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fwb_ipf
-%attr(755,root,root) %{_datadir}/%{name}/modules/gui/lib_ipf_dlg.so
+%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_ipf_dlg.so
 %{_datadir}/%{name}/platform/ipf.xml
 %{_mandir}/man1/fwb_ipf*
 
 %files compiler-openbsd-pf
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fwb_pf
-%attr(755,root,root) %{_datadir}/%{name}/modules/gui/lib_pf_dlg.so
+%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_pf_dlg.so
 %{_datadir}/%{name}/platform/pf.xml
 %{_mandir}/man1/fwb_pf*
 
 %files compiler-cisco-pix
 %defattr(644,root,root,755)
 #%attr(755,root,root) %{_bindir}/fwb_pix
-%attr(755,root,root) %{_datadir}/%{name}/modules/gui/lib_pix_dlg.so
+%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_pix_dlg.so
 %{_datadir}/%{name}/platform/pix.xml
 #%%{_mandir}/man1/fwb_pix*
 
 %files compiler-freebsd-ipfw
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fwb_ipfw
-%attr(755,root,root) %{_datadir}/%{name}/modules/gui/lib_ipfw_dlg.so
+%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_ipfw_dlg.so
 %{_datadir}/%{name}/platform/ipfw.xml
 
 %files platform-linux24
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_datadir}/%{name}/modules/gui/lib_linux24_dlg.so
+%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_linux24_dlg.so
 %{_datadir}/%{name}/os/linux24.xml
 
 %files platform-freebsd
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_datadir}/%{name}/modules/gui/lib_freebsd_dlg.so
+%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_freebsd_dlg.so
 %{_datadir}/%{name}/os/freebsd.xml
 
 %files platform-openbsd
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_datadir}/%{name}/modules/gui/lib_openbsd_dlg.so
+%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_openbsd_dlg.so
 %{_datadir}/%{name}/os/openbsd.xml
 
 %files platform-cisco-pix
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_datadir}/%{name}/modules/gui/lib_pix_os_dlg.so
+%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_pix_os_dlg.so
 %{_datadir}/%{name}/os/pix_os.xml
 
 %files platform-solaris
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_datadir}/%{name}/modules/gui/lib_solaris_dlg.so
+%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_solaris_dlg.so
 %{_datadir}/%{name}/os/solaris.xml
 
 %files platform-macosx
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_datadir}/%{name}/modules/gui/lib_macosx_dlg.so
+%attr(755,root,root) %{_libdir}/%{name}/modules/gui/lib_macosx_dlg.so
 %{_datadir}/%{name}/os/macosx.xml
