@@ -8,14 +8,15 @@ License:	GPL
 Group:		Applications/System
 Source0:	http://belnet.dl.sourceforge.net/sourceforge/fwbuilder/%{name}-%{version}.tar.gz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRequires:	automake
+BuildRequires:	gdk-pixbuf-devel
 BuildRequires:	gtkmm-devel >= 1.2.3
+BuildRequires:	imlib-devel
 BuildRequires:	libfwbuilder-devel >= 0.10.4
-BuildRequires:	libxml2-devel
-BuildRequires:	libxslt-devel
 BuildRequires:	libsigc++1-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	imlib-devel
-BuildRequires:	gdk-pixbuf-devel
+BuildRequires:	libxml2-devel
+BuildRequires:	libxslt-devel
 Obsoletes:	fwbuilder-doc fwbuilder-devel
 
 %define         _prefix         /usr/X11R6
@@ -71,7 +72,6 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_pixmapsdir}/fwbuilder
 install src/icons/*.xpm $RPM_BUILD_ROOT%{_pixmapsdir}/fwbuilder
 install src/icons/host*.png $RPM_BUILD_ROOT%{_pixmapsdir}/fwbuilder
-
 
 %clean
 rm -rf $RPM_BUILD_ROOT
