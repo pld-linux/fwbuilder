@@ -1,12 +1,12 @@
 Summary:	Firewall Builder
 Summary(pl):	Narzêdzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	1.0.10
+Version:	1.0.11
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-# Source0-md5:	a2fbe778af33d0227af013d69c69411b
+# Source0-md5:	03f013f0f02472c91845e3d6fd50720a
 Patch0:		%{name}-modulesdir.patch
 URL:		http://www.fwbuilder.org/
 BuildRequires:	autoconf
@@ -14,14 +14,14 @@ BuildRequires:	automake
 BuildRequires:	gdk-pixbuf-devel
 BuildRequires:	gtkmm1-devel >= 1.2.3
 BuildRequires:	imlib-devel
-BuildRequires:	libfwbuilder-devel >= 1.0.0
+BuildRequires:	libfwbuilder-devel >= 1.0.1
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
 BuildRequires:	libxslt-devel
-Requires:	libfwbuilder >= 1.0.0
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Requires:	libfwbuilder >= 1.0.1
 Obsoletes:	fwbuilder-doc
 Obsoletes:	fwbuilder-devel
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Firewall administration toolkit.
@@ -202,16 +202,20 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}/fwbuilder
 install src/icons/*.xpm $RPM_BUILD_ROOT%{_pixmapsdir}/fwbuilder
 install src/icons/host*.png $RPM_BUILD_ROOT%{_pixmapsdir}/fwbuilder
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc doc/AUTHORS doc/ChangeLog doc/Credits doc/NEWS doc/README* doc/TODO
 %doc doc/examples doc/testing_new_compiler
 %doc doc/*.html
 %attr(755,root,root) %{_bindir}/fwbuilder
 %attr(755,root,root) %{_bindir}/fwblookup
+%attr(755,root,root) %{_bindir}/fwb_compile_all
+%attr(755,root,root) %{_bindir}/fwbedit
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/modules
 %dir %{_libdir}/%{name}/modules/gui
@@ -230,6 +234,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/%{name}
 %{_mandir}/man1/fwbuilder*
 %{_mandir}/man1/fwblookup*
+%{_mandir}/man1/fwb_compile_all*
+%{_mandir}/man1/fwbedit*
 
 %files install
 %defattr(644,root,root,755)
