@@ -1,9 +1,9 @@
 Name:		fwbuilder
 Summary:	Firewall Builder
 Summary(pl):	Narzêdzie do tworzenia firewalli
-Url:		http://www.fwbuilder.org/
-Version:	1.0.3
-Release:	1
+URL:		http://www.fwbuilder.org/
+Version:	1.0.7
+Release:	0.1
 License:	GPL
 Group:		Applications/System
 Source0:	http://belnet.dl.sourceforge.net/sourceforge/fwbuilder/%{name}-%{version}.tar.gz
@@ -12,15 +12,16 @@ BuildRequires:	automake
 BuildRequires:	gdk-pixbuf-devel
 BuildRequires:	gtkmm1-devel >= 1.2.3
 BuildRequires:	imlib-devel
-BuildRequires:	libfwbuilder-devel >= 0.10.4
+BuildRequires:	libfwbuilder-devel >= 0.10.11
 BuildRequires:	libsigc++1-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	libxslt-devel
+Requires:	libfwbuilder >= 0.10.11
 Obsoletes:	fwbuilder-doc fwbuilder-devel
 
 %define         _prefix         /usr/X11R6
-%define         _mandir         %{_prefix}/man
+%define         _mandir         %{_datadir}/man
 
 %description
 Firewall administration toolkit.
@@ -28,35 +29,13 @@ Firewall administration toolkit.
 %description -l pl
 Narzêdzie do tworzenia i administracji firewallami.
 
-%package compiler
-Summary:	compiler libraries for Firewall Builder
-Summary(pl):	Biblioteki dla Firewall Buildera
-Group:		Applications/System
-Requires:	%{name} = %{version}
-
-%description compiler
-Compiler libraries for Firewall Builder.
-
-%description compiler -l pl
-Biblioteki dla Firewall Buildera.
-
-%package iptables
-Summary:	iptables compiler for Firewall Builder
-Summary(pl):	Kompilator iptables dla Firewall Buildera
-Group:		Applications/System
-Requires:	%{name} = %{version}
-
-%description iptables
-iptables compiler for Firewall Builder.
-
-%description iptables -l pl
-Kompilator iptables dla Firewall Buildera.
-
 %prep
 %setup -q
 
 %build
-cp -f /usr/share/automake/config.* .
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
 %configure2_13 \
 	--enable-auto-docdir \
 	--with-templatedir=%{_datadir}/fwbuilder \
@@ -73,10 +52,12 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}/fwbuilder
 install src/icons/*.xpm $RPM_BUILD_ROOT%{_pixmapsdir}/fwbuilder
 install src/icons/host*.png $RPM_BUILD_ROOT%{_pixmapsdir}/fwbuilder
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc doc/*
 %attr(755,root,root) %{_bindir}/*
@@ -85,12 +66,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/bug-buddy/xml/*
 %{_datadir}/bug-buddy/*.*
 %{_pixmapsdir}/fwbuilder
-
-%files compiler
-%defattr(644,root,root,755)
-%{_libdir}/lib*.a
-%{_includedir}/*.h
-
-%files iptables
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/fwb_iptables
+%{_mandir}/man1/*
