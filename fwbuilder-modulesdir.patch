@@ -124,7 +124,7 @@
 @@ -180,11 +180,11 @@
  AC_MSG_CHECKING(whether we should prepend external symbol names with underscore)
  case "$build_os" in
-   openbsd*|*darwin*)
+   *darwin*)
 -    AC_DEFINE_UNQUOTED(EXTERNAL_FUNC_NAME_PREFIX, "_")
 +    AC_DEFINE_UNQUOTED(EXTERNAL_FUNC_NAME_PREFIX, "_", [function name prefix])
      AC_MSG_RESULT(yes)
