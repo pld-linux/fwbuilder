@@ -31,7 +31,7 @@ Narzêdzie do tworzenia i administracji firewallami.
 
 %package install
 Summary:	Install script for Firewall Builder rules
-Summary(pl):	Skrypt instalujacy regulki tworzone przez Firewall Buildera
+Summary(pl):	Skrypt instaluj±cy regu³ki tworzone przez Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}
 
@@ -39,7 +39,7 @@ Requires:	%{name} = %{version}
 Install script for Firewall Builder rules.
 
 %description install -l pl
-Skrypt instalujacy regulki tworzone przez Firewall Buildera.
+Skrypt instaluj±cy regu³ki tworzone przez Firewall Buildera.
 
 %package compiler-ipfilter
 Summary:	ipfilter compiler for Firewall Builder
