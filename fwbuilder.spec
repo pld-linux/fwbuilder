@@ -1,4 +1,7 @@
+#
+# Conditional build:
 %bcond_with	ccache	# enable ccache
+#
 Summary:	Firewall Builder
 Summary(pl):	Narzêdzie do tworzenia firewalli
 Name:		fwbuilder
@@ -15,7 +18,7 @@ BuildRequires:	automake
 BuildRequires:	libfwbuilder-devel >= %{version}
 BuildRequires:	qmake
 BuildRequires:	qt-devel >= 3.0
-%{?with_ccache:BuildRequires:ccache}
+%{?with_ccache:BuildRequires:	ccache}
 Requires:	libfwbuilder >= %{version}
 Obsoletes:	fwbuilder-doc
 Obsoletes:	fwbuilder-devel
@@ -175,7 +178,7 @@ Pliki specyficzne dla MacOS X.
 %setup -q
 %patch0 -p1
 
-# Without it this app uses ccache if its found in system even if we dont 
+# Without it this app uses ccache if it's found in system even if we don't
 # want it
 
 %if %{without ccache}
