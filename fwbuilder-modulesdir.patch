@@ -1,0 +1,194 @@
+--- fwbuilder-1.0.10/src/gui/DialogFactory.cc.orig	Sun Jan 26 06:33:22 2003
++++ fwbuilder-1.0.10/src/gui/DialogFactory.cc	Wed Jul 23 16:01:23 2003
+@@ -206,7 +206,7 @@
+             return( new TargetDialog_unknown(o) );
+         } else 
+         {
+-            string mod_path=TEMPLATE_DIR "/modules/gui/lib_" + 
++            string mod_path=MODULES_DIR "/modules/gui/lib_" + 
+ 		target + "_dlg." DYNAMIC_MODULE_EXT;
+ 
+             void *handle;
+--- fwbuilder-1.0.10/src/ipt/Makefile.in.orig	Wed Jul 23 16:02:46 2003
++++ fwbuilder-1.0.10/src/ipt/Makefile.in	Wed Jul 23 16:02:27 2003
+@@ -19,8 +19,8 @@
+ datadir = @datadir@
+ localedir = $(datadir)/locale
+ 
+-gui_modules_dir = @datadir@/fwbuilder/modules/gui
+-be_modules_dir = @datadir@/fwbuilder/modules/backend
++gui_modules_dir = @libdir@/fwbuilder/modules/gui
++be_modules_dir = @libdir@/fwbuilder/modules/backend
+ 
+ mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ 
+--- fwbuilder-1.0.10/src/pf/Makefile.in.orig	Wed Apr 30 08:52:26 2003
++++ fwbuilder-1.0.10/src/pf/Makefile.in	Wed Jul 23 16:03:09 2003
+@@ -18,8 +18,8 @@
+ datadir = @datadir@
+ localedir = $(datadir)/locale
+ 
+-gui_modules_dir = @datadir@/fwbuilder/modules/gui
+-be_modules_dir = @datadir@/fwbuilder/modules/backend
++gui_modules_dir = @libdir@/fwbuilder/modules/gui
++be_modules_dir = @libdir@/fwbuilder/modules/backend
+ 
+ 
+ 
+--- fwbuilder-1.0.10/src/pix/Makefile.in.orig	Wed Apr 30 08:52:27 2003
++++ fwbuilder-1.0.10/src/pix/Makefile.in	Wed Jul 23 16:03:22 2003
+@@ -16,8 +16,8 @@
+ docdir = @DOCDIR@
+ datadir = @datadir@/fwbuilder
+ 
+-gui_modules_dir = @datadir@/fwbuilder/modules/gui
+-be_modules_dir = @datadir@/fwbuilder/modules/backend
++gui_modules_dir = @libdir@/fwbuilder/modules/gui
++be_modules_dir = @libdir@/fwbuilder/modules/backend
+ 
+ 
+ 
+--- fwbuilder-1.0.10/configure.in.orig	Wed May 14 08:55:29 2003
++++ fwbuilder-1.0.10/configure.in	Wed Jul 23 16:04:57 2003
+@@ -29,7 +29,7 @@
+ AC_SUBST(FWB_VERSION)
+ 
+ AC_SUBST(RELEASE_NUM)
+-AC_DEFINE_UNQUOTED(RELEASE_NUM, "$RELEASE_NUM")
++AC_DEFINE_UNQUOTED(RELEASE_NUM, "$RELEASE_NUM", [package release])
+ 
+ AC_SUBST(REQUIRED_LIBFWBUILDER_VERSION)
+ AC_SUBST(LIBFWBUILDER_SOMAJOR)
+@@ -39,7 +39,7 @@
+ 
+ 
+ PACKAGE=fwbuilder
+-AC_DEFINE_UNQUOTED(PACKAGE, "$PACKAGE")
++AC_DEFINE_UNQUOTED(PACKAGE, "$PACKAGE", [package name])
+ AC_SUBST(PACKAGE)
+ 
+ AM_INIT_AUTOMAKE($PACKAGE, $VERSION)
+@@ -90,6 +90,7 @@
+ 
+ 
+ AC_ARG_WITH(templatedir, [  --with-templatedir=DIR  Specify directory path for fwbuilder template files ])
++AC_ARG_WITH(modulesdir,  [  --with-modulesdir=DIR   Specify directory path for fwbuilder modules ])
+ AC_ARG_WITH(iconsdir,    [  --with-iconsdir=DIR     Specify directory path for icons ])
+ AC_ARG_WITH(docdir,      [  --with-docdir=DIR       Specify directory path for fwbuilder 
+                           documentation files  ])
+@@ -113,12 +113,18 @@
+ dnl   path
+ 
+ if test "x$with_templatedir" != "x"; then
+-  AC_DEFINE_UNQUOTED(TEMPLATE_DIR, "${with_templatedir}")
++  AC_DEFINE_UNQUOTED(TEMPLATE_DIR, "${with_templatedir}", [template directory])
+ else
+-  AC_DEFINE_UNQUOTED(TEMPLATE_DIR, "${PREFIX}/share/fwbuilder")
++  AC_DEFINE_UNQUOTED(TEMPLATE_DIR, "${PREFIX}/share/fwbuilder", [template directory])
+ fi
+ 
+-AC_DEFINE_UNQUOTED(VERSION,              "$VERSION")
++if test "x$with_modulesdir" != "x"; then
++  AC_DEFINE_UNQUOTED(MODULES_DIR, "${with_modulesdir}", [modules directory])
++else
++  AC_DEFINE_UNQUOTED(MODULES_DIR, "${PREFIX}/lib/fwbuilder", [modules directory])
++fi
++
++AC_DEFINE_UNQUOTED(VERSION,              "$VERSION", [package version])
+ AC_SUBST(VERSION)
+ 
+ if test "x$with_iconsdir" != "x"; then
+@@ -157,7 +157,7 @@
+ AC_MSG_CHECKING(whether we should define __PRAGMA_REDEFINE_EXTNAME)
+ case "$build_os" in
+   solaris*)
+-    AC_DEFINE_UNQUOTED(__PRAGMA_REDEFINE_EXTNAME, 1)
++    AC_DEFINE_UNQUOTED(__PRAGMA_REDEFINE_EXTNAME, 1, [extname])
+     AC_MSG_RESULT(yes)
+     ;;
+   *)
+@@ -168,11 +168,11 @@
+ AC_MSG_CHECKING(the file extension of the dynamically loadable modules)
+ case "$build_os" in
+   *darwin*)
+-    AC_DEFINE_UNQUOTED(DYNAMIC_MODULE_EXT, "dylib")
++    AC_DEFINE_UNQUOTED(DYNAMIC_MODULE_EXT, "dylib", [dynamic module extension])
+     AC_MSG_RESULT(dylib)
+     ;;
+   *)
+-    AC_DEFINE_UNQUOTED(DYNAMIC_MODULE_EXT, "so")
++    AC_DEFINE_UNQUOTED(DYNAMIC_MODULE_EXT, "so", [dynamic module extension])
+     AC_MSG_RESULT(so)
+     ;;
+ esac
+@@ -180,11 +180,11 @@
+ AC_MSG_CHECKING(whether we should prepend external symbol names with underscore)
+ case "$build_os" in
+   openbsd*|*darwin*)
+-    AC_DEFINE_UNQUOTED(EXTERNAL_FUNC_NAME_PREFIX, "_")
++    AC_DEFINE_UNQUOTED(EXTERNAL_FUNC_NAME_PREFIX, "_", [function name prefix])
+     AC_MSG_RESULT(yes)
+     ;;
+   *)
+-    AC_DEFINE_UNQUOTED(EXTERNAL_FUNC_NAME_PREFIX, )
++    AC_DEFINE_UNQUOTED(EXTERNAL_FUNC_NAME_PREFIX, , [function name prefix])
+     AC_MSG_RESULT(no)
+     ;;
+ esac
+@@ -278,7 +278,7 @@
+ fi
+ fi
+ 
+-AC_DEFINE_UNQUOTED(LIBFWBUILDER_VERSION, "$LIBFWBUILDER_VERSION")
++AC_DEFINE_UNQUOTED(LIBFWBUILDER_VERSION, "$LIBFWBUILDER_VERSION", [libfwbuilder version])
+ 
+ dnl
+ dnl On FreeBSD glib-config is called glib12-config, but standard AM_PATH_GLIB
+@@ -470,7 +470,7 @@
+    ofstream strm(1);
+ , 
+   AC_MSG_RESULT(yes)
+-  AC_DEFINE_UNQUOTED(STL_HAS_OFSTREAM_FD, 1)
++  AC_DEFINE_UNQUOTED(STL_HAS_OFSTREAM_FD, 1, [have ofstream fd])
+ , 
+   AC_MSG_RESULT(no)
+ )
+@@ -486,7 +486,7 @@
+    dlopen("",RTLD_LAZY);
+ , 
+   AC_MSG_RESULT(yes)
+-  AC_DEFINE_UNQUOTED(DLOPEN_MODE, RTLD_LAZY)
++  AC_DEFINE_UNQUOTED(DLOPEN_MODE, RTLD_LAZY, [dlopen mode])
+ , 
+   AC_MSG_RESULT(no)
+ 
+@@ -497,7 +497,7 @@
+    dlopen("",DL_LAZY);
+ , 
+     AC_MSG_RESULT(yes)
+-    AC_DEFINE_UNQUOTED(DLOPEN_MODE, DL_LAZY)
++    AC_DEFINE_UNQUOTED(DLOPEN_MODE, DL_LAZY, [dlopen mode])
+ , 
+     AC_MSG_RESULT(no)
+     AC_MSG_ERROR([Can not determine valid value for the second parameter for dlopen])
+@@ -692,16 +692,16 @@
+ DOCDIRPATH=`dirname ${DOCDIR}`
+ 
+ AC_SUBST(OS)
+-AC_DEFINE_UNQUOTED(OS,               "${OS}")
++AC_DEFINE_UNQUOTED(OS,               "${OS}", [package OS])
+ 
+ AC_SUBST(DISTRO)
+-AC_DEFINE_UNQUOTED(DISTRO,           "${DISTRO}")
++AC_DEFINE_UNQUOTED(DISTRO,           "${DISTRO}", [package distro])
+ 
+ AC_SUBST(DOCDIRPATH)
+-AC_DEFINE_UNQUOTED(DOCDIRPATH,       "${DOCDIRPATH}")
++AC_DEFINE_UNQUOTED(DOCDIRPATH,       "${DOCDIRPATH}", [doc dir path])
+ 
+ AC_SUBST(DOCDIR)
+-AC_DEFINE_UNQUOTED(DOCDIR,           "${DOCDIR}")
++AC_DEFINE_UNQUOTED(DOCDIR,           "${DOCDIR}", [doc dir])
+ 
+ AC_SUBST(MANDIR)
+ 
