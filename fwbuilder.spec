@@ -6,7 +6,7 @@ Version:	1.0.8
 Release:	0.1
 License:	GPL
 Group:		Applications/System
-Source0:	http://belnet.dl.sourceforge.net/sourceforge/fwbuilder/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 # Source0-md5:	0b0c3ebf32d4e94fd428e39f703f6d45
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 BuildRequires:	automake
