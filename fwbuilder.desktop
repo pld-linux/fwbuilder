@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=fwbuilder
+Comment=Firewall Builder
+Comment[pl]=Narzędzie do tworzenia firewalli
+Exec=fwbuilder
+Icon=fwbuilder.png
+Terminal=false
+Type=Application
+Categories=Qt;System;Security;
+# vi: encoding=utf-8
