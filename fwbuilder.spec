@@ -30,7 +30,7 @@ Narzêdzie do tworzenia i administracji firewallami.
 
 %package compiler
 Summary:	compiler libraries for Firewall Builder
-Summary(pl):	Biblioteki dla Firewall Buildera.
+Summary(pl):	Biblioteki dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}
 
@@ -42,7 +42,7 @@ Biblioteki dla Firewall Buildera.
 
 %package iptables
 Summary:	iptables compiler for Firewall Builder
-Summary(pl):	Kompilator iptables dla Firewall Buildera.
+Summary(pl):	Kompilator iptables dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}
 
