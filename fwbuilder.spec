@@ -93,7 +93,7 @@ Kompilator Cisco PIX dla Firewall Buildera.
 Summary:	FreeBSD ipfw compiler for Firewall Builder
 Summary(pl):	Kompilator FreeBSD ipfw dla Firewall Buildera
 Group:		Applications/System
-Requires: %{name} = %{version}
+Requires:	%{name} = %{version}
                                                                                 
 %description compiler-freebsd-ipfw
 FreeBSD ipfw compiler for Firewall Builder.
