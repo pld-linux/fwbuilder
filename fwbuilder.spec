@@ -5,21 +5,21 @@
 Summary:	Firewall Builder
 Summary(pl):	Narzêdzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	2.0.3
+Version:	2.0.4
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
-# Source0-md5:	407b8c14af1a2d7714ff6a90f0981bae
+# Source0-md5:	a63df33d38f4845cc5721cee9a10640b
 Patch0:		%{name}-configure.patch
 URL:		http://www.fwbuilder.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libfwbuilder-devel >= %{version}
+BuildRequires:	libfwbuilder-devel = %{version}
 BuildRequires:	qmake
 BuildRequires:	qt-devel >= 3.0
 %{?with_ccache:BuildRequires:	ccache}
-Requires:	libfwbuilder >= %{version}
+Requires:	libfwbuilder = %{version}
 Obsoletes:	fwbuilder-doc
 Obsoletes:	fwbuilder-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -220,7 +220,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}/locale
 %lang(fr) %{_datadir}/%{name}/locale/fwbuilder_fr.qm
 %lang(ru) %{_datadir}/%{name}/locale/fwbuilder_ru.qm
-%lang(vi) %{_datadir}/%{name}/locale/fwbuilder_vi.qm
+%lang(ja) %{_datadir}/%{name}/locale/fwbuilder_ja.qm
 %dir %{_datadir}/%{name}/os
 %{_datadir}/%{name}/os/linksys.xml
 %{_datadir}/%{name}/os/unknown_os.xml
