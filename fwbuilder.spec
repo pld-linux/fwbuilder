@@ -3,7 +3,7 @@ Summary:	Firewall Builder
 Summary(pl):	Narzêdzie do tworzenia firewalli
 Url:		http://www.fwbuilder.org/
 Version:	1.0.0
-Release:	1rh72
+Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://prdownloads.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
