@@ -11,13 +11,15 @@ License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
 # Source0-md5:	a63df33d38f4845cc5721cee9a10640b
+Source1:	%{name}.desktop
+Source2:	%{name}.png
 Patch0:		%{name}-configure.patch
 URL:		http://www.fwbuilder.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libfwbuilder-devel = %{version}
 BuildRequires:	qmake
-BuildRequires:	qt-devel >= 3.0
+BuildRequires:	qt-devel >= 3.1
 %{?with_ccache:BuildRequires:	ccache}
 Requires:	libfwbuilder = %{version}
 Obsoletes:	fwbuilder-doc
@@ -199,11 +201,17 @@ cp -f /usr/share/automake/config.* .
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_desktopdir}
+install -d $RPM_BUILD_ROOT%{_pixmapsdir}
+
 export QTDIR="%{_usr}"
 export QMAKESPEC="%{_datadir}/qt/mkspecs/linux-g++"
 
 %{__make} install \
 	DDIR=$RPM_BUILD_ROOT
+
+install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
+install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -226,10 +234,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/os/unknown_os.xml
 %dir %{_datadir}/%{name}/platform
 %{_datadir}/%{name}/platform/unknown.xml
+%{_desktopdir}/fwbuilder.desktop
 %{_mandir}/man1/fwbuilder*
 %{_mandir}/man1/fwblookup*
 %{_mandir}/man1/fwb_compile_all*
 %{_mandir}/man1/fwbedit*
+%{_pixmapsdir}/fwbuilder.png
 
 %files install
 %defattr(644,root,root,755)
