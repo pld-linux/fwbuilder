@@ -5,12 +5,12 @@
 Summary:	Firewall Builder
 Summary(pl):	Narzêdzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	2.0.5
+Version:	2.0.6
 Release:	1
-License:	GPL
+License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
-# Source0-md5:	03fe6aaa6f8c7728bd3015a4df187c70
+# Source0-md5:	41554801c43e14a48b19ade91e5a14cd
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-configure.patch
@@ -19,7 +19,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libfwbuilder-devel = %{version}
 BuildRequires:	qmake
-BuildRequires:	qt-devel >= 3.1
+BuildRequires:	qt-devel >= 3.2
 %{?with_ccache:BuildRequires:	ccache}
 Requires:	libfwbuilder = %{version}
 Obsoletes:	fwbuilder-doc

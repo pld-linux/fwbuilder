@@ -1,12 +1,3 @@
---- fwbuilder-2.0.0/configure.in.orig	2004-07-12 05:47:38.000000000 +0200
-+++ fwbuilder-2.0.0/configure.in	2004-08-01 21:13:17.019482144 +0200
-@@ -382,5 +382,5 @@
- 
- AC_OUTPUT
- 
--. runqmake.sh
-+. ./runqmake.sh
- 
 --- fwbuilder-2.0.0/qmake.inc.in.orig	2004-07-03 08:55:34.000000000 +0200
 +++ fwbuilder-2.0.0/qmake.inc.in	2004-08-01 21:17:11.261871888 +0200
 @@ -4,7 +4,7 @@
