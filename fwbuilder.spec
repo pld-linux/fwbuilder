@@ -10,7 +10,7 @@ Source0:	http://belnet.dl.sourceforge.net/sourceforge/fwbuilder/%{name}-%{versio
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 BuildRequires:	automake
 BuildRequires:	gdk-pixbuf-devel
-BuildRequires:	gtkmm-devel >= 1.2.3
+BuildRequires:	gtkmm1-devel >= 1.2.3
 BuildRequires:	imlib-devel
 BuildRequires:	libfwbuilder-devel >= 0.10.4
 BuildRequires:	libsigc++1-devel
