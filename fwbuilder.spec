@@ -1,3 +1,4 @@
+%bcond_with	ccache	# enable ccache
 Summary:	Firewall Builder
 Summary(pl):	Narzêdzie do tworzenia firewalli
 Name:		fwbuilder
@@ -14,6 +15,7 @@ BuildRequires:	automake
 BuildRequires:	libfwbuilder-devel >= %{version}
 BuildRequires:	qmake
 BuildRequires:	qt-devel >= 3.0
+%{?with_ccache:BuildRequires:ccache}
 Requires:	libfwbuilder >= %{version}
 Obsoletes:	fwbuilder-doc
 Obsoletes:	fwbuilder-devel
@@ -173,22 +175,31 @@ Pliki specyficzne dla MacOS X.
 %setup -q
 %patch0 -p1
 
+# Without it this app uses ccache if its found in system even if we dont 
+# want it
+
+%if %{without ccache}
+grep -vi ccache configure.in > configure.in.x
+mv configure.in.x configure.in
+%endif
+
 %build
+export QTDIR="%{_usr}"
+export QMAKESPEC="%{_datadir}/qt/mkspecs/linux-g++"
+
 cp -f /usr/share/automake/config.* .
 %{__aclocal}
 %{__autoconf}
 %configure \
-	QMAKE_CXXFLAGS_RELEASE="%{rpmcflags}" \
 	--with-templatedir=%{_datadir}/fwbuilder
-
-%{__make} \
-	QTDIR=/usr
+%{__make} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
+export QTDIR="%{_usr}"
+export QMAKESPEC="%{_datadir}/qt/mkspecs/linux-g++"
 
 %{__make} install \
-	QTDIR=/usr \
 	DDIR=$RPM_BUILD_ROOT
 
 %clean
