@@ -240,7 +240,7 @@ rm -rf $RPM_BUILD_ROOT
 #%attr(755,root,root) %{_bindir}/fwb_pix
 %attr(755,root,root) %{_datadir}/fwbuilder/modules/gui/lib_pix_dlg.so
 %{_datadir}/fwbuilder/platform/pix.xml
-#%{_mandir}/man1/fwb_pix*
+#%%{_mandir}/man1/fwb_pix*
 
 %files platform-linux24
 %defattr(644,root,root,755)
