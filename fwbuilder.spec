@@ -1,12 +1,12 @@
 Summary:	Firewall Builder
 Summary(pl):	Narzêdzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	2.0.0
-Release:	2
+Version:	2.0.1
+Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
-# Source0-md5:	167ba3ce4b2cacf3018f799b9cee5743
+# Source0-md5:	7e63c4c8c29a5fdd5cb7ed36dcb8bd38
 Patch0:		%{name}-configure.patch
 URL:		http://www.fwbuilder.org/
 BuildRequires:	autoconf
