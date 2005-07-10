@@ -5,12 +5,12 @@
 Summary:	Firewall Builder
 Summary(pl):	Narzêdzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	2.0.7
+Version:	2.0.8
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
-# Source0-md5:	e381567247165bb4a8a9a130d3abe446
+# Source0-md5:	37d4266b95967c3d4295ec5efdfa0c23
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-configure.patch
@@ -197,7 +197,7 @@ cp -f /usr/share/automake/config.* .
 %{__autoconf}
 %configure \
 	--with-templatedir=%{_datadir}/fwbuilder
-%{__make} 
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
