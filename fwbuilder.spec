@@ -17,6 +17,7 @@ Patch0:		%{name}-configure.patch
 URL:		http://www.fwbuilder.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	libfwbuilder-devel = %{version}
 BuildRequires:	qmake
 BuildRequires:	qt-devel >= 3.2
@@ -225,6 +226,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/*.xml
 %dir %{_datadir}/%{name}/locale
+%lang(de) %{_datadir}/%{name}/locale/fwbuilder_de.qm
 %lang(fr) %{_datadir}/%{name}/locale/fwbuilder_fr.qm
 %lang(ru) %{_datadir}/%{name}/locale/fwbuilder_ru.qm
 %lang(ja) %{_datadir}/%{name}/locale/fwbuilder_ja.qm
