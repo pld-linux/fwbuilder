@@ -5,12 +5,12 @@
 Summary:	Firewall Builder
 Summary(pl):	Narzêdzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	2.0.8
+Version:	2.0.10
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
-# Source0-md5:	37d4266b95967c3d4295ec5efdfa0c23
+# Source0-md5:	3a0946ed322df40be9814124ac7a9cfd
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-configure.patch
@@ -81,6 +81,18 @@ OpenBSD pf compiler for Firewall Builder.
 %description compiler-openbsd-pf -l pl
 Kompilator OpenBSD pf dla Firewall Buildera.
 
+%package compiler-cisco-fwsm
+Summary:	Cisco FWSM compiler for Firewall Builder
+Summary(pl):	Kompilator Cisco FWSM dla Firewall Buildera
+Group:		Applications/System
+Requires:	%{name} = %{version}-%{release}
+
+%description compiler-cisco-fwsm
+Cisco FWSM compiler for Firewall Builder.
+
+%description compiler-cisco-fwsm -l pl
+Kompilator Cisco FWSM dla Firewall Buildera.
+
 %package compiler-cisco-pix
 Summary:	Cisco PIX compiler for Firewall Builder
 Summary(pl):	Kompilator Cisco PIX dla Firewall Buildera
@@ -140,6 +152,18 @@ OpenBSD specific files.
 
 %description platform-openbsd -l pl
 Pliki specyficzne dla OpenBSD.
+
+%package platform-cisco-fwsm
+Summary:	Cisco PIX specific files
+Summary(pl):	Pliki specyficzne dla Cisco FWSM
+Group:		Applications/System
+Requires:	%{name} = %{version}-%{release}
+
+%description platform-cisco-fwsm
+Cisco FWSM specific files.
+
+%description platform-cisco-fwsm -l pl
+Pliki specyficzne dla Cisci FWSM.
 
 %package platform-cisco-pix
 Summary:	Cisco PIX specific files
@@ -219,14 +243,15 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/{AUTHORS,ChangeLog,Credits,README*,*.html}
-%attr(755,root,root) %{_bindir}/fwbuilder
-%attr(755,root,root) %{_bindir}/fwblookup
 %attr(755,root,root) %{_bindir}/fwb_compile_all
 %attr(755,root,root) %{_bindir}/fwbedit
+%attr(755,root,root) %{_bindir}/fwblookup
+%attr(755,root,root) %{_bindir}/fwbuilder
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/*.xml
 %dir %{_datadir}/%{name}/locale
 %lang(de) %{_datadir}/%{name}/locale/fwbuilder_de.qm
+%lang(es) %{_datadir}/%{name}/locale/fwbuilder_es.qm
 %lang(fr) %{_datadir}/%{name}/locale/fwbuilder_fr.qm
 %lang(ru) %{_datadir}/%{name}/locale/fwbuilder_ru.qm
 %lang(ja) %{_datadir}/%{name}/locale/fwbuilder_ja.qm
@@ -265,6 +290,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/platform/pf.xml
 %{_mandir}/man1/fwb_pf*
 
+%files compiler-cisco-fwsm
+%defattr(644,root,root,755)
+%{_datadir}/%{name}/platform/fwsm.xml
+
 %files compiler-cisco-pix
 %defattr(644,root,root,755)
 #%attr(755,root,root) %{_bindir}/fwb_pix
@@ -287,6 +316,10 @@ rm -rf $RPM_BUILD_ROOT
 %files platform-openbsd
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/os/openbsd.xml
+
+%files platform-cisco-fwsm
+%defattr(644,root,root,755)
+%{_datadir}/%{name}/os/fwsm_os.xml
 
 %files platform-cisco-pix
 %defattr(644,root,root,755)
