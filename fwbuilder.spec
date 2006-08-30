@@ -2,15 +2,17 @@
 # Conditional build:
 %bcond_with	ccache	# enable ccache
 #
+%define		_majver		2
+%define		_minver		1
 Summary:	Firewall Builder
 Summary(pl):	Narzêdzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	2.0.12
-Release:	1
+Version:	%{_majver}.%{_minver}.5
+Release:	0.1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
-# Source0-md5:	43149297f4a64b19ad3fa519cfff2326
+# Source0-md5:	b2b94885db32d7af5f5d2ec8b517f109
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-configure.patch
@@ -205,6 +207,10 @@ Pliki specyficzne dla MacOS X.
 %setup -q
 %patch0 -p1
 
+# we don't need no 21 suffixes, we know our version
+for name in {fwb_ipf,fwb_ipfw,fwb_ipt,fwb_pf,fwbedit,fwblookup,fwbuilder}; do
+mv doc/${name}21.1 doc/$name.1
+done
 # Without it this app uses ccache if it's found in system even if we don't
 # want it
 
