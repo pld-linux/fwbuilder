@@ -175,6 +175,150 @@ diff -urN fwbuilder-2.1.5.orig/src/pf/pf.pro fwbuilder-2.1.5/src/pf/pf.pro
  
 -TARGET      = fwb_pf21
 +TARGET      = fwb_pf
+diff -urN fwbuilder-2.1.5.orig/src/res/platform/fwsm.xml fwbuilder-2.1.5/src/res/platform/fwsm.xml
+--- fwbuilder-2.1.5.orig/src/res/platform/fwsm.xml	2006-07-24 02:11:00.000000000 +0200
++++ fwbuilder-2.1.5/src/res/platform/fwsm.xml	2006-08-30 20:07:53.000000000 +0200
+@@ -2,7 +2,7 @@
+ <FWBuilderResources version="2.1.5-b">
+     <Target name="FWSM">
+       <description>FWSM</description>
+-      <compiler>fwb_pix21</compiler>
++      <compiler>fwb_pix</compiler>
+       <dialog>pix</dialog>
+       <installer>fwb_inst_pix</installer>
+       <diff>fwb_pix_diff</diff>
+diff -urN fwbuilder-2.1.5.orig/src/res/platform/fwsm.xml.in fwbuilder-2.1.5/src/res/platform/fwsm.xml.in
+--- fwbuilder-2.1.5.orig/src/res/platform/fwsm.xml.in	2006-06-03 20:32:22.000000000 +0200
++++ fwbuilder-2.1.5/src/res/platform/fwsm.xml.in	2006-08-30 20:08:05.000000000 +0200
+@@ -2,7 +2,7 @@
+ <FWBuilderResources version="@VERSION@-@RELEASE_NUM@">
+     <Target name="FWSM">
+       <description>FWSM</description>
+-      <compiler>fwb_pix21</compiler>
++      <compiler>fwb_pix</compiler>
+       <dialog>pix</dialog>
+       <installer>fwb_inst_pix</installer>
+       <diff>fwb_pix_diff</diff>
+diff -urN fwbuilder-2.1.5.orig/src/res/platform/ipfw.xml fwbuilder-2.1.5/src/res/platform/ipfw.xml
+--- fwbuilder-2.1.5.orig/src/res/platform/ipfw.xml	2006-07-24 02:11:00.000000000 +0200
++++ fwbuilder-2.1.5/src/res/platform/ipfw.xml	2006-08-30 20:07:40.000000000 +0200
+@@ -2,7 +2,7 @@
+ <FWBuilderResources version="2.1.5">
+     <Target name="ipfw">
+       <description>ipfw</description>
+-      <compiler>fwb_ipfw21</compiler>
++      <compiler>fwb_ipfw</compiler>
+       <dialog>ipfw</dialog>
+       <supported_os>freebsd,macosx</supported_os>
+         
+diff -urN fwbuilder-2.1.5.orig/src/res/platform/ipfw.xml.in fwbuilder-2.1.5/src/res/platform/ipfw.xml.in
+--- fwbuilder-2.1.5.orig/src/res/platform/ipfw.xml.in	2006-06-03 20:32:22.000000000 +0200
++++ fwbuilder-2.1.5/src/res/platform/ipfw.xml.in	2006-08-30 20:08:09.000000000 +0200
+@@ -2,7 +2,7 @@
+ <FWBuilderResources version="@VERSION@">
+     <Target name="ipfw">
+       <description>ipfw</description>
+-      <compiler>fwb_ipfw21</compiler>
++      <compiler>fwb_ipfw</compiler>
+       <dialog>ipfw</dialog>
+       <supported_os>freebsd,macosx</supported_os>
+         
+diff -urN fwbuilder-2.1.5.orig/src/res/platform/ipf.xml fwbuilder-2.1.5/src/res/platform/ipf.xml
+--- fwbuilder-2.1.5.orig/src/res/platform/ipf.xml	2006-07-24 02:11:00.000000000 +0200
++++ fwbuilder-2.1.5/src/res/platform/ipf.xml	2006-08-30 20:08:20.000000000 +0200
+@@ -2,7 +2,7 @@
+ <FWBuilderResources version="2.1.5">
+     <Target name="ipf">
+       <description>ipfilter</description>
+-      <compiler>fwb_ipf21</compiler>
++      <compiler>fwb_ipf</compiler>
+       <dialog>ipf</dialog>
+       <supported_os>freebsd,solaris</supported_os>
+ 
+diff -urN fwbuilder-2.1.5.orig/src/res/platform/ipf.xml.in fwbuilder-2.1.5/src/res/platform/ipf.xml.in
+--- fwbuilder-2.1.5.orig/src/res/platform/ipf.xml.in	2006-06-03 20:32:22.000000000 +0200
++++ fwbuilder-2.1.5/src/res/platform/ipf.xml.in	2006-08-30 20:08:12.000000000 +0200
+@@ -2,7 +2,7 @@
+ <FWBuilderResources version="@VERSION@">
+     <Target name="ipf">
+       <description>ipfilter</description>
+-      <compiler>fwb_ipf21</compiler>
++      <compiler>fwb_ipf</compiler>
+       <dialog>ipf</dialog>
+       <supported_os>freebsd,solaris</supported_os>
+ 
+diff -urN fwbuilder-2.1.5.orig/src/res/platform/iptables.xml fwbuilder-2.1.5/src/res/platform/iptables.xml
+--- fwbuilder-2.1.5.orig/src/res/platform/iptables.xml	2006-07-24 02:11:00.000000000 +0200
++++ fwbuilder-2.1.5/src/res/platform/iptables.xml	2006-08-30 20:08:01.000000000 +0200
+@@ -2,7 +2,7 @@
+ <FWBuilderResources version="2.1.5">
+     <Target name="iptables">
+       <description>iptables</description>
+-      <compiler>fwb_ipt21</compiler>
++      <compiler>fwb_ipt</compiler>
+       <dialog>iptables</dialog>
+       <supported_os>linux24</supported_os>
+ 
+diff -urN fwbuilder-2.1.5.orig/src/res/platform/iptables.xml.in fwbuilder-2.1.5/src/res/platform/iptables.xml.in
+--- fwbuilder-2.1.5.orig/src/res/platform/iptables.xml.in	2006-06-03 20:32:22.000000000 +0200
++++ fwbuilder-2.1.5/src/res/platform/iptables.xml.in	2006-08-30 20:06:49.000000000 +0200
+@@ -2,7 +2,7 @@
+ <FWBuilderResources version="@VERSION@">
+     <Target name="iptables">
+       <description>iptables</description>
+-      <compiler>fwb_ipt21</compiler>
++      <compiler>fwb_ipt</compiler>
+       <dialog>iptables</dialog>
+       <supported_os>linux24</supported_os>
+ 
+diff -urN fwbuilder-2.1.5.orig/src/res/platform/pf.xml fwbuilder-2.1.5/src/res/platform/pf.xml
+--- fwbuilder-2.1.5.orig/src/res/platform/pf.xml	2006-07-24 02:11:00.000000000 +0200
++++ fwbuilder-2.1.5/src/res/platform/pf.xml	2006-08-30 20:07:57.000000000 +0200
+@@ -2,7 +2,7 @@
+ <FWBuilderResources version="2.1.5">
+     <Target name="pf">
+       <description>PF</description>
+-      <compiler>fwb_pf21</compiler>
++      <compiler>fwb_pf</compiler>
+       <dialog>pf</dialog>
+       <supported_os>openbsd,freebsd</supported_os>
+ 
+diff -urN fwbuilder-2.1.5.orig/src/res/platform/pf.xml.in fwbuilder-2.1.5/src/res/platform/pf.xml.in
+--- fwbuilder-2.1.5.orig/src/res/platform/pf.xml.in	2006-06-03 20:32:22.000000000 +0200
++++ fwbuilder-2.1.5/src/res/platform/pf.xml.in	2006-08-30 20:07:44.000000000 +0200
+@@ -2,7 +2,7 @@
+ <FWBuilderResources version="@VERSION@">
+     <Target name="pf">
+       <description>PF</description>
+-      <compiler>fwb_pf21</compiler>
++      <compiler>fwb_pf</compiler>
+       <dialog>pf</dialog>
+       <supported_os>openbsd,freebsd</supported_os>
+ 
+diff -urN fwbuilder-2.1.5.orig/src/res/platform/pix.xml fwbuilder-2.1.5/src/res/platform/pix.xml
+--- fwbuilder-2.1.5.orig/src/res/platform/pix.xml	2006-07-24 02:11:00.000000000 +0200
++++ fwbuilder-2.1.5/src/res/platform/pix.xml	2006-08-30 20:08:16.000000000 +0200
+@@ -2,7 +2,7 @@
+ <FWBuilderResources version="2.1.5-b">
+     <Target name="pix">
+       <description>PIX</description>
+-      <compiler>fwb_pix21</compiler>
++      <compiler>fwb_pix</compiler>
+       <dialog>pix</dialog>
+       <installer>fwb_inst_pix</installer>
+       <diff>fwb_pix_diff</diff>
+diff -urN fwbuilder-2.1.5.orig/src/res/platform/pix.xml.in fwbuilder-2.1.5/src/res/platform/pix.xml.in
+--- fwbuilder-2.1.5.orig/src/res/platform/pix.xml.in	2006-06-03 20:32:22.000000000 +0200
++++ fwbuilder-2.1.5/src/res/platform/pix.xml.in	2006-08-30 20:07:48.000000000 +0200
+@@ -2,7 +2,7 @@
+ <FWBuilderResources version="@VERSION@-@RELEASE_NUM@">
+     <Target name="pix">
+       <description>PIX</description>
+-      <compiler>fwb_pix21</compiler>
++      <compiler>fwb_pix</compiler>
+       <dialog>pix</dialog>
+       <installer>fwb_inst_pix</installer>
+       <diff>fwb_pix_diff</diff>
 diff -urN fwbuilder-2.1.5.orig/src/src.pro fwbuilder-2.1.5/src/src.pro
 --- fwbuilder-2.1.5.orig/src/src.pro	2005-07-31 07:42:22.000000000 +0200
 +++ fwbuilder-2.1.5/src/src.pro	2006-08-30 19:28:20.000000000 +0200
