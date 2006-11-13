@@ -208,7 +208,7 @@ Pliki specyficzne dla MacOS X.
 # Without it this app uses ccache if it's found in system even if we don't
 # want it
 
-%if %{without ccache}
+%if !%{with ccache}
 grep -vi ccache configure.in > configure.in.x
 mv configure.in.x configure.in
 %endif
