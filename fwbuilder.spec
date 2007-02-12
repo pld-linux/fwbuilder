@@ -5,7 +5,7 @@
 %define		_majver		2
 %define		_minver		1
 Summary:	Firewall Builder
-Summary(pl):	Narzêdzie do tworzenia firewalli
+Summary(pl.UTF-8):   NarzÄ™dzie do tworzenia firewalli
 Name:		fwbuilder
 Version:	%{_majver}.%{_minver}.5
 Release:	0.1
@@ -32,175 +32,175 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Firewall administration toolkit.
 
-%description -l pl
-Narzêdzie do tworzenia i administracji firewallami.
+%description -l pl.UTF-8
+NarzÄ™dzie do tworzenia i administracji firewallami.
 
 %package install
 Summary:	Install script for Firewall Builder rules
-Summary(pl):	Skrypt instaluj±cy regu³ki tworzone przez Firewall Buildera
+Summary(pl.UTF-8):   Skrypt instalujÄ…cy reguÅ‚ki tworzone przez Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
 %description install
 Install script for Firewall Builder rules.
 
-%description install -l pl
-Skrypt instaluj±cy regu³ki tworzone przez Firewall Buildera.
+%description install -l pl.UTF-8
+Skrypt instalujÄ…cy reguÅ‚ki tworzone przez Firewall Buildera.
 
 %package compiler-ipfilter
 Summary:	ipfilter compiler for Firewall Builder
-Summary(pl):	Kompilator ipfilter dla Firewall Buildera
+Summary(pl.UTF-8):   Kompilator ipfilter dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
 %description compiler-ipfilter
 ipfilter compiler for Firewall Builder.
 
-%description compiler-ipfilter -l pl
+%description compiler-ipfilter -l pl.UTF-8
 Kompilator ipfilter dla Firewall Buildera.
 
 %package compiler-iptables
 Summary:	iptables compiler for Firewall Builder
-Summary(pl):	Kompilator iptables dla Firewall Buildera
+Summary(pl.UTF-8):   Kompilator iptables dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
 %description compiler-iptables
 iptables compiler for Firewall Builder.
 
-%description compiler-iptables -l pl
+%description compiler-iptables -l pl.UTF-8
 Kompilator iptables dla Firewall Buildera.
 
 %package compiler-openbsd-pf
 Summary:	OpenBSD pf compiler for Firewall Builder
-Summary(pl):	Kompilator OpenBSD pf dla Firewall Buildera
+Summary(pl.UTF-8):   Kompilator OpenBSD pf dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
 %description compiler-openbsd-pf
 OpenBSD pf compiler for Firewall Builder.
 
-%description compiler-openbsd-pf -l pl
+%description compiler-openbsd-pf -l pl.UTF-8
 Kompilator OpenBSD pf dla Firewall Buildera.
 
 %package compiler-cisco-fwsm
 Summary:	Cisco FWSM compiler for Firewall Builder
-Summary(pl):	Kompilator Cisco FWSM dla Firewall Buildera
+Summary(pl.UTF-8):   Kompilator Cisco FWSM dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
 %description compiler-cisco-fwsm
 Cisco FWSM compiler for Firewall Builder.
 
-%description compiler-cisco-fwsm -l pl
+%description compiler-cisco-fwsm -l pl.UTF-8
 Kompilator Cisco FWSM dla Firewall Buildera.
 
 %package compiler-cisco-pix
 Summary:	Cisco PIX compiler for Firewall Builder
-Summary(pl):	Kompilator Cisco PIX dla Firewall Buildera
+Summary(pl.UTF-8):   Kompilator Cisco PIX dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
 %description compiler-cisco-pix
 Cisco PIX compiler for Firewall Builder.
 
-%description compiler-cisco-pix -l pl
+%description compiler-cisco-pix -l pl.UTF-8
 Kompilator Cisco PIX dla Firewall Buildera.
 
 %package compiler-freebsd-ipfw
 Summary:	FreeBSD ipfw compiler for Firewall Builder
-Summary(pl):	Kompilator FreeBSD ipfw dla Firewall Buildera
+Summary(pl.UTF-8):   Kompilator FreeBSD ipfw dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
 %description compiler-freebsd-ipfw
 FreeBSD ipfw compiler for Firewall Builder.
 
-%description compiler-freebsd-ipfw -l pl
+%description compiler-freebsd-ipfw -l pl.UTF-8
 Kompilator FreeBSD ipfw dla Firewall Buildera.
 
 %package platform-linux24
 Summary:	Linux 2.4 specific files
-Summary(pl):	Pliki specyficzne dla Linuksa 2.4
+Summary(pl.UTF-8):   Pliki specyficzne dla Linuksa 2.4
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
 %description platform-linux24
 Linux 2.4 specific files.
 
-%description platform-linux24 -l pl
+%description platform-linux24 -l pl.UTF-8
 Pliki specyficzne dla Linuksa 2.4.
 
 %package platform-freebsd
 Summary:	FreeBSD specific files
-Summary(pl):	Pliki specyficzne dla FreeBSD
+Summary(pl.UTF-8):   Pliki specyficzne dla FreeBSD
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
 %description platform-freebsd
 FreeBSD specific files.
 
-%description platform-freebsd -l pl
+%description platform-freebsd -l pl.UTF-8
 Pliki specyficzne dla FreeBSD.
 
 %package platform-openbsd
 Summary:	OpenBSD specific files
-Summary(pl):	Pliki specyficzne dla OpenBSD
+Summary(pl.UTF-8):   Pliki specyficzne dla OpenBSD
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
 %description platform-openbsd
 OpenBSD specific files.
 
-%description platform-openbsd -l pl
+%description platform-openbsd -l pl.UTF-8
 Pliki specyficzne dla OpenBSD.
 
 %package platform-cisco-fwsm
 Summary:	Cisco PIX specific files
-Summary(pl):	Pliki specyficzne dla Cisco FWSM
+Summary(pl.UTF-8):   Pliki specyficzne dla Cisco FWSM
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
 %description platform-cisco-fwsm
 Cisco FWSM specific files.
 
-%description platform-cisco-fwsm -l pl
+%description platform-cisco-fwsm -l pl.UTF-8
 Pliki specyficzne dla Cisci FWSM.
 
 %package platform-cisco-pix
 Summary:	Cisco PIX specific files
-Summary(pl):	Pliki specyficzne dla Cisco PIX
+Summary(pl.UTF-8):   Pliki specyficzne dla Cisco PIX
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
 %description platform-cisco-pix
 Cisco PIX specific files.
 
-%description platform-cisco-pix -l pl
+%description platform-cisco-pix -l pl.UTF-8
 Pliki specyficzne dla Cisci PIX.
 
 %package platform-solaris
 Summary:	Solaris specific files
-Summary(pl):	Pliki specyficzne dla Solarisa
+Summary(pl.UTF-8):   Pliki specyficzne dla Solarisa
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
 %description platform-solaris
 Solaris specific files.
 
-%description platform-solaris -l pl
+%description platform-solaris -l pl.UTF-8
 Pliki specyficzne dla Solarisa.
 
 %package platform-macosx
 Summary:	MacOS X specific files
-Summary(pl):	Pliki specyficzne dla MacOS X
+Summary(pl.UTF-8):   Pliki specyficzne dla MacOS X
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
 %description platform-macosx
 MacOS X specific files.
 
-%description platform-macosx -l pl
+%description platform-macosx -l pl.UTF-8
 Pliki specyficzne dla MacOS X.
 
 %prep
