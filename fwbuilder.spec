@@ -3,7 +3,7 @@
 %bcond_with	ccache	# enable ccache
 #
 Summary:	Firewall Builder
-Summary(pl.UTF-8):   Narzędzie do tworzenia firewalli
+Summary(pl.UTF-8):	Narzędzie do tworzenia firewalli
 Name:		fwbuilder
 Version:	2.0.12
 Release:	1
@@ -35,7 +35,7 @@ Narzędzie do tworzenia i administracji firewallami.
 
 %package install
 Summary:	Install script for Firewall Builder rules
-Summary(pl.UTF-8):   Skrypt instalujący regułki tworzone przez Firewall Buildera
+Summary(pl.UTF-8):	Skrypt instalujący regułki tworzone przez Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -47,7 +47,7 @@ Skrypt instalujący regułki tworzone przez Firewall Buildera.
 
 %package compiler-ipfilter
 Summary:	ipfilter compiler for Firewall Builder
-Summary(pl.UTF-8):   Kompilator ipfilter dla Firewall Buildera
+Summary(pl.UTF-8):	Kompilator ipfilter dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -59,7 +59,7 @@ Kompilator ipfilter dla Firewall Buildera.
 
 %package compiler-iptables
 Summary:	iptables compiler for Firewall Builder
-Summary(pl.UTF-8):   Kompilator iptables dla Firewall Buildera
+Summary(pl.UTF-8):	Kompilator iptables dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -71,7 +71,7 @@ Kompilator iptables dla Firewall Buildera.
 
 %package compiler-openbsd-pf
 Summary:	OpenBSD pf compiler for Firewall Builder
-Summary(pl.UTF-8):   Kompilator OpenBSD pf dla Firewall Buildera
+Summary(pl.UTF-8):	Kompilator OpenBSD pf dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -83,7 +83,7 @@ Kompilator OpenBSD pf dla Firewall Buildera.
 
 %package compiler-cisco-fwsm
 Summary:	Cisco FWSM compiler for Firewall Builder
-Summary(pl.UTF-8):   Kompilator Cisco FWSM dla Firewall Buildera
+Summary(pl.UTF-8):	Kompilator Cisco FWSM dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -95,7 +95,7 @@ Kompilator Cisco FWSM dla Firewall Buildera.
 
 %package compiler-cisco-pix
 Summary:	Cisco PIX compiler for Firewall Builder
-Summary(pl.UTF-8):   Kompilator Cisco PIX dla Firewall Buildera
+Summary(pl.UTF-8):	Kompilator Cisco PIX dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -107,7 +107,7 @@ Kompilator Cisco PIX dla Firewall Buildera.
 
 %package compiler-freebsd-ipfw
 Summary:	FreeBSD ipfw compiler for Firewall Builder
-Summary(pl.UTF-8):   Kompilator FreeBSD ipfw dla Firewall Buildera
+Summary(pl.UTF-8):	Kompilator FreeBSD ipfw dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -119,7 +119,7 @@ Kompilator FreeBSD ipfw dla Firewall Buildera.
 
 %package platform-linux24
 Summary:	Linux 2.4 specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla Linuksa 2.4
+Summary(pl.UTF-8):	Pliki specyficzne dla Linuksa 2.4
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -131,7 +131,7 @@ Pliki specyficzne dla Linuksa 2.4.
 
 %package platform-freebsd
 Summary:	FreeBSD specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla FreeBSD
+Summary(pl.UTF-8):	Pliki specyficzne dla FreeBSD
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -143,7 +143,7 @@ Pliki specyficzne dla FreeBSD.
 
 %package platform-openbsd
 Summary:	OpenBSD specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla OpenBSD
+Summary(pl.UTF-8):	Pliki specyficzne dla OpenBSD
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -155,7 +155,7 @@ Pliki specyficzne dla OpenBSD.
 
 %package platform-cisco-fwsm
 Summary:	Cisco PIX specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla Cisco FWSM
+Summary(pl.UTF-8):	Pliki specyficzne dla Cisco FWSM
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -167,7 +167,7 @@ Pliki specyficzne dla Cisci FWSM.
 
 %package platform-cisco-pix
 Summary:	Cisco PIX specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla Cisco PIX
+Summary(pl.UTF-8):	Pliki specyficzne dla Cisco PIX
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -179,7 +179,7 @@ Pliki specyficzne dla Cisci PIX.
 
 %package platform-solaris
 Summary:	Solaris specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla Solarisa
+Summary(pl.UTF-8):	Pliki specyficzne dla Solarisa
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -191,7 +191,7 @@ Pliki specyficzne dla Solarisa.
 
 %package platform-macosx
 Summary:	MacOS X specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla MacOS X
+Summary(pl.UTF-8):	Pliki specyficzne dla MacOS X
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
