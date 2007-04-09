@@ -20,7 +20,7 @@ BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	libfwbuilder-devel = %{version}
 BuildRequires:	qmake
-BuildRequires:	qt-devel >= 3.2
+BuildRequires:	qt-devel >= 6:3.2
 %{?with_ccache:BuildRequires:	ccache}
 Requires:	libfwbuilder = %{version}
 Obsoletes:	fwbuilder-doc
