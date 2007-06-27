@@ -7,12 +7,12 @@
 Summary:	Firewall Builder
 Summary(pl.UTF-8):   Narzędzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	%{_majver}.%{_minver}.5
+Version:	%{_majver}.%{_minver}.12
 Release:	0.1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
-# Source0-md5:	b2b94885db32d7af5f5d2ec8b517f109
+# Source0-md5:	3a46afdff88497ebb3fea156f3257f27
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-configure.patch
@@ -208,9 +208,9 @@ Pliki specyficzne dla MacOS X.
 %patch0 -p1
 
 # we don't need no 21 suffixes, we know our version
-for name in {fwb_ipf,fwb_ipfw,fwb_ipt,fwb_pf,fwbedit,fwblookup,fwbuilder}; do
-mv doc/${name}21.1 doc/$name.1
-done
+#for name in {fwb_ipf,fwb_ipfw,fwb_ipt,fwb_pf,fwbedit,fwblookup,fwbuilder}; do
+#mv doc/${name}21.1 doc/$name.1
+#done
 # Without it this app uses ccache if it's found in system even if we don't
 # want it
 

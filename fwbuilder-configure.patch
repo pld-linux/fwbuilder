@@ -1,45 +1,22 @@
-diff -urN fwbuilder-2.1.5.orig/doc/doc.pro fwbuilder-2.1.5/doc/doc.pro
---- fwbuilder-2.1.5.orig/doc/doc.pro	2005-11-19 06:27:26.000000000 +0100
-+++ fwbuilder-2.1.5/doc/doc.pro	2006-08-30 19:36:00.000000000 +0200
-@@ -52,16 +52,15 @@
- 
- doc.path    = $(DDIR)$$DOCDIR
- 
--man.files   = fwbedit21.1             \
--              fwblookup21.1           \
--              fwbuilder21.1           \
--              fwb_ipf21.1             \
--              fwb_ipfw21.1            \
--              fwb_ipt21.1             \
--              fwb_pf21.1              \
+diff -Nur o.fwbuilder-2.1.12/doc/doc.pro n.fwbuilder-2.1.12/doc/doc.pro
+--- o.fwbuilder-2.1.12/doc/doc.pro	2007-06-13 04:03:34.000000000 +0200
++++ n.fwbuilder-2.1.12/doc/doc.pro	2007-06-28 01:06:00.000000000 +0200
+@@ -52,9 +52,8 @@
+               fwb_ipfw.1            \
+               fwb_ipt.1             \
+               fwb_pf.1              \
 -
 -#             fwb_install.1           \
 -#			  fwb_compile_all.1       \
-+man.files   = fwbedit.1             \
-+              fwblookup.1           \
-+              fwbuilder.1           \
-+              fwb_ipf.1             \
-+              fwb_ipfw.1            \
-+              fwb_ipt.1             \
-+              fwb_pf.1              \
-+             fwb_install.1           \
-+	     fwb_compile_all.1       \
++              fwb_install.1         \
++              fwb_compile_all.1     \
  
  man.path    = $(DDIR)$$MANDIR/man1
  
-diff -urN fwbuilder-2.1.5.orig/qmake.inc.in fwbuilder-2.1.5/qmake.inc.in
---- fwbuilder-2.1.5.orig/qmake.inc.in	2006-06-21 09:20:37.000000000 +0200
-+++ fwbuilder-2.1.5/qmake.inc.in	2006-08-30 19:18:31.000000000 +0200
-@@ -6,7 +6,7 @@
- TEMPLATE	=app
- 
- DEFINES      += $$(DEFINES)
--INCLUDEPATH  += ../.. $$(INCLUDEPATH)
-+INCLUDEPATH  += ../.. $$(INCLUDEPATH) /usr/include/qt
- LANGUAGE      = C++
- UI_DIR        = ui
- 
-@@ -27,7 +27,7 @@
+diff -Nur o.fwbuilder-2.1.12/qmake.inc.in n.fwbuilder-2.1.12/qmake.inc.in
+--- o.fwbuilder-2.1.12/qmake.inc.in	2007-05-18 05:16:09.000000000 +0200
++++ n.fwbuilder-2.1.12/qmake.inc.in	2007-06-28 01:06:38.000000000 +0200
+@@ -35,7 +35,7 @@
  	res_os.path             = $(DDIR)@RES_DIR@/os
  	res_platform.path       = $(DDIR)@RES_DIR@/platform
  
@@ -48,287 +25,15 @@ diff -urN fwbuilder-2.1.5.orig/qmake.inc.in fwbuilder-2.1.5/qmake.inc.in
  	INCLUDEPATH            += @LIBFWBUILDER_INCLUDEPATH@
  
  	LIBS                   += $$LIBS_FWBUILDER @LIBS@
-diff -urN fwbuilder-2.1.5.orig/qmake.inc.in.orig fwbuilder-2.1.5/qmake.inc.in.orig
---- fwbuilder-2.1.5.orig/qmake.inc.in.orig	1970-01-01 01:00:00.000000000 +0100
-+++ fwbuilder-2.1.5/qmake.inc.in.orig	2006-06-21 09:20:37.000000000 +0200
-@@ -0,0 +1,48 @@
-+#-*- mode: makefile; tab-width: 4; -*-
-+#
-+######### fwbuilder2/qmake.inc.in
-+#
-+
-+TEMPLATE	=app
-+
-+DEFINES      += $$(DEFINES)
-+INCLUDEPATH  += ../.. $$(INCLUDEPATH)
-+LANGUAGE      = C++
-+UI_DIR        = ui
-+
-+unix {
-+!macx {
-+	UI_DIR = .ui
-+    MOC_DIR = .moc
-+    OBJECTS_DIR = .obj
-+
-+	PREFIX                  = @PREFIX@
-+	DOCDIR                  = @DOCDIR@
-+	MANDIR                  = @MANDIR@
-+	LIBS_FWCOMPILER         = @LIBFWBUILDER_LIBS_FWCOMPILER@
-+	LIBS_FWBUILDER          = @LIBFWBUILDER_LIBS_FWBUILDER@
-+
-+	target.path             = $(DDIR)$$PREFIX/bin
-+	res.path                = $(DDIR)@RES_DIR@
-+	res_os.path             = $(DDIR)@RES_DIR@/os
-+	res_platform.path       = $(DDIR)@RES_DIR@/platform
-+
-+	CONFIG                 += qt thread rtti stl warn_on debug
-+	INCLUDEPATH            += @LIBFWBUILDER_INCLUDEPATH@
-+
-+	LIBS                   += $$LIBS_FWBUILDER @LIBS@
-+
-+	PKGLOCALEDIR            = $$res.path/locale
-+
-+	QMAKE_CFLAGS_DEBUG     += -Wno-unused-parameter
-+	QMAKE_CFLAGS_RELEASE   += -Wno-unused-parameter
-+	QMAKE_CXXFLAGS_DEBUG   += -Wno-unused-parameter @CXXFLAGS@
-+	QMAKE_CXXFLAGS_RELEASE += -Wno-unused-parameter @CXXFLAGS@
-+}
-+}
-+
-+exists(qmake2.inc) {
-+  include( qmake2.inc)
-+}
-+
-+INSTALLS   += target
-diff -urN fwbuilder-2.1.5.orig/src/fwbedit/fwbedit.pro fwbuilder-2.1.5/src/fwbedit/fwbedit.pro
---- fwbuilder-2.1.5.orig/src/fwbedit/fwbedit.pro	2005-07-31 07:42:22.000000000 +0200
-+++ fwbuilder-2.1.5/src/fwbedit/fwbedit.pro	2006-08-30 19:18:41.000000000 +0200
-@@ -6,7 +6,7 @@
- SOURCES	 = fwbedit.cpp
- HEADERS	 = ../../config.h
- 
--TARGET = fwbedit21
-+TARGET = fwbedit
- 
- QMAKE_COPY    = ../../install.sh -m 0755 -s
- 
-diff -urN fwbuilder-2.1.5.orig/src/fwblookup/fwblookup.pro fwbuilder-2.1.5/src/fwblookup/fwblookup.pro
---- fwbuilder-2.1.5.orig/src/fwblookup/fwblookup.pro	2005-07-31 07:42:22.000000000 +0200
-+++ fwbuilder-2.1.5/src/fwblookup/fwblookup.pro	2006-08-30 19:18:46.000000000 +0200
-@@ -6,7 +6,7 @@
- SOURCES	 = fwblookup.cpp
- HEADERS	 = ../../config.h
- 
--TARGET = fwblookup21
-+TARGET = fwblookup
- 
- QMAKE_COPY    = ../../install.sh -m 0755 -s
- 
-diff -urN fwbuilder-2.1.5.orig/src/gui/gui.pro fwbuilder-2.1.5/src/gui/gui.pro
---- fwbuilder-2.1.5.orig/src/gui/gui.pro	2006-06-03 20:32:21.000000000 +0200
-+++ fwbuilder-2.1.5/src/gui/gui.pro	2006-08-30 19:18:59.000000000 +0200
-@@ -418,7 +418,7 @@
- #
- #
- #
--TARGET = fwbuilder21
-+TARGET = fwbuilder
- #
- 
- #unix  {
-diff -urN fwbuilder-2.1.5.orig/src/ipf/ipf.pro fwbuilder-2.1.5/src/ipf/ipf.pro
---- fwbuilder-2.1.5.orig/src/ipf/ipf.pro	2005-07-31 07:42:22.000000000 +0200
-+++ fwbuilder-2.1.5/src/ipf/ipf.pro	2006-08-30 19:19:05.000000000 +0200
-@@ -25,4 +25,4 @@
- 
- LIBS  += $$LIBS_FWCOMPILER
- 
--TARGET      = fwb_ipf21
-+TARGET      = fwb_ipf
-diff -urN fwbuilder-2.1.5.orig/src/ipfw/ipfw.pro fwbuilder-2.1.5/src/ipfw/ipfw.pro
---- fwbuilder-2.1.5.orig/src/ipfw/ipfw.pro	2005-07-31 07:42:23.000000000 +0200
-+++ fwbuilder-2.1.5/src/ipfw/ipfw.pro	2006-08-30 19:19:14.000000000 +0200
-@@ -25,4 +25,4 @@
- 
- LIBS  += $$LIBS_FWCOMPILER
- 
--TARGET      = fwb_ipfw21
-+TARGET      = fwb_ipfw
-diff -urN fwbuilder-2.1.5.orig/src/ipt/ipt.pro fwbuilder-2.1.5/src/ipt/ipt.pro
---- fwbuilder-2.1.5.orig/src/ipt/ipt.pro	2006-01-04 05:11:58.000000000 +0100
-+++ fwbuilder-2.1.5/src/ipt/ipt.pro	2006-08-30 19:19:26.000000000 +0200
-@@ -33,7 +33,7 @@
- 
- win32:CONFIG += console
- 
--TARGET      = fwb_ipt21
-+TARGET      = fwb_ipt
- 
- LIBS  += $$LIBS_FWCOMPILER
- 
-diff -urN fwbuilder-2.1.5.orig/src/pf/pf.pro fwbuilder-2.1.5/src/pf/pf.pro
---- fwbuilder-2.1.5.orig/src/pf/pf.pro	2005-07-31 07:42:23.000000000 +0200
-+++ fwbuilder-2.1.5/src/pf/pf.pro	2006-08-30 19:19:35.000000000 +0200
-@@ -23,4 +23,4 @@
- 
- LIBS  += $$LIBS_FWCOMPILER
- 
--TARGET      = fwb_pf21
-+TARGET      = fwb_pf
-diff -urN fwbuilder-2.1.5.orig/src/res/platform/fwsm.xml fwbuilder-2.1.5/src/res/platform/fwsm.xml
---- fwbuilder-2.1.5.orig/src/res/platform/fwsm.xml	2006-07-24 02:11:00.000000000 +0200
-+++ fwbuilder-2.1.5/src/res/platform/fwsm.xml	2006-08-30 20:07:53.000000000 +0200
-@@ -2,7 +2,7 @@
- <FWBuilderResources version="2.1.5-b">
-     <Target name="FWSM">
-       <description>FWSM</description>
--      <compiler>fwb_pix21</compiler>
-+      <compiler>fwb_pix</compiler>
-       <dialog>pix</dialog>
-       <installer>fwb_inst_pix</installer>
-       <diff>fwb_pix_diff</diff>
-diff -urN fwbuilder-2.1.5.orig/src/res/platform/fwsm.xml.in fwbuilder-2.1.5/src/res/platform/fwsm.xml.in
---- fwbuilder-2.1.5.orig/src/res/platform/fwsm.xml.in	2006-06-03 20:32:22.000000000 +0200
-+++ fwbuilder-2.1.5/src/res/platform/fwsm.xml.in	2006-08-30 20:08:05.000000000 +0200
-@@ -2,7 +2,7 @@
- <FWBuilderResources version="@VERSION@-@RELEASE_NUM@">
-     <Target name="FWSM">
-       <description>FWSM</description>
--      <compiler>fwb_pix21</compiler>
-+      <compiler>fwb_pix</compiler>
-       <dialog>pix</dialog>
-       <installer>fwb_inst_pix</installer>
-       <diff>fwb_pix_diff</diff>
-diff -urN fwbuilder-2.1.5.orig/src/res/platform/ipfw.xml fwbuilder-2.1.5/src/res/platform/ipfw.xml
---- fwbuilder-2.1.5.orig/src/res/platform/ipfw.xml	2006-07-24 02:11:00.000000000 +0200
-+++ fwbuilder-2.1.5/src/res/platform/ipfw.xml	2006-08-30 20:07:40.000000000 +0200
-@@ -2,7 +2,7 @@
- <FWBuilderResources version="2.1.5">
-     <Target name="ipfw">
-       <description>ipfw</description>
--      <compiler>fwb_ipfw21</compiler>
-+      <compiler>fwb_ipfw</compiler>
-       <dialog>ipfw</dialog>
-       <supported_os>freebsd,macosx</supported_os>
-         
-diff -urN fwbuilder-2.1.5.orig/src/res/platform/ipfw.xml.in fwbuilder-2.1.5/src/res/platform/ipfw.xml.in
---- fwbuilder-2.1.5.orig/src/res/platform/ipfw.xml.in	2006-06-03 20:32:22.000000000 +0200
-+++ fwbuilder-2.1.5/src/res/platform/ipfw.xml.in	2006-08-30 20:08:09.000000000 +0200
-@@ -2,7 +2,7 @@
- <FWBuilderResources version="@VERSION@">
-     <Target name="ipfw">
-       <description>ipfw</description>
--      <compiler>fwb_ipfw21</compiler>
-+      <compiler>fwb_ipfw</compiler>
-       <dialog>ipfw</dialog>
-       <supported_os>freebsd,macosx</supported_os>
-         
-diff -urN fwbuilder-2.1.5.orig/src/res/platform/ipf.xml fwbuilder-2.1.5/src/res/platform/ipf.xml
---- fwbuilder-2.1.5.orig/src/res/platform/ipf.xml	2006-07-24 02:11:00.000000000 +0200
-+++ fwbuilder-2.1.5/src/res/platform/ipf.xml	2006-08-30 20:08:20.000000000 +0200
-@@ -2,7 +2,7 @@
- <FWBuilderResources version="2.1.5">
-     <Target name="ipf">
-       <description>ipfilter</description>
--      <compiler>fwb_ipf21</compiler>
-+      <compiler>fwb_ipf</compiler>
-       <dialog>ipf</dialog>
-       <supported_os>freebsd,solaris</supported_os>
- 
-diff -urN fwbuilder-2.1.5.orig/src/res/platform/ipf.xml.in fwbuilder-2.1.5/src/res/platform/ipf.xml.in
---- fwbuilder-2.1.5.orig/src/res/platform/ipf.xml.in	2006-06-03 20:32:22.000000000 +0200
-+++ fwbuilder-2.1.5/src/res/platform/ipf.xml.in	2006-08-30 20:08:12.000000000 +0200
-@@ -2,7 +2,7 @@
- <FWBuilderResources version="@VERSION@">
-     <Target name="ipf">
-       <description>ipfilter</description>
--      <compiler>fwb_ipf21</compiler>
-+      <compiler>fwb_ipf</compiler>
-       <dialog>ipf</dialog>
-       <supported_os>freebsd,solaris</supported_os>
- 
-diff -urN fwbuilder-2.1.5.orig/src/res/platform/iptables.xml fwbuilder-2.1.5/src/res/platform/iptables.xml
---- fwbuilder-2.1.5.orig/src/res/platform/iptables.xml	2006-07-24 02:11:00.000000000 +0200
-+++ fwbuilder-2.1.5/src/res/platform/iptables.xml	2006-08-30 20:08:01.000000000 +0200
-@@ -2,7 +2,7 @@
- <FWBuilderResources version="2.1.5">
-     <Target name="iptables">
-       <description>iptables</description>
--      <compiler>fwb_ipt21</compiler>
-+      <compiler>fwb_ipt</compiler>
-       <dialog>iptables</dialog>
-       <supported_os>linux24</supported_os>
- 
-diff -urN fwbuilder-2.1.5.orig/src/res/platform/iptables.xml.in fwbuilder-2.1.5/src/res/platform/iptables.xml.in
---- fwbuilder-2.1.5.orig/src/res/platform/iptables.xml.in	2006-06-03 20:32:22.000000000 +0200
-+++ fwbuilder-2.1.5/src/res/platform/iptables.xml.in	2006-08-30 20:06:49.000000000 +0200
-@@ -2,7 +2,7 @@
- <FWBuilderResources version="@VERSION@">
-     <Target name="iptables">
-       <description>iptables</description>
--      <compiler>fwb_ipt21</compiler>
-+      <compiler>fwb_ipt</compiler>
-       <dialog>iptables</dialog>
-       <supported_os>linux24</supported_os>
- 
-diff -urN fwbuilder-2.1.5.orig/src/res/platform/pf.xml fwbuilder-2.1.5/src/res/platform/pf.xml
---- fwbuilder-2.1.5.orig/src/res/platform/pf.xml	2006-07-24 02:11:00.000000000 +0200
-+++ fwbuilder-2.1.5/src/res/platform/pf.xml	2006-08-30 20:07:57.000000000 +0200
-@@ -2,7 +2,7 @@
- <FWBuilderResources version="2.1.5">
-     <Target name="pf">
-       <description>PF</description>
--      <compiler>fwb_pf21</compiler>
-+      <compiler>fwb_pf</compiler>
-       <dialog>pf</dialog>
-       <supported_os>openbsd,freebsd</supported_os>
- 
-diff -urN fwbuilder-2.1.5.orig/src/res/platform/pf.xml.in fwbuilder-2.1.5/src/res/platform/pf.xml.in
---- fwbuilder-2.1.5.orig/src/res/platform/pf.xml.in	2006-06-03 20:32:22.000000000 +0200
-+++ fwbuilder-2.1.5/src/res/platform/pf.xml.in	2006-08-30 20:07:44.000000000 +0200
-@@ -2,7 +2,7 @@
- <FWBuilderResources version="@VERSION@">
-     <Target name="pf">
-       <description>PF</description>
--      <compiler>fwb_pf21</compiler>
-+      <compiler>fwb_pf</compiler>
-       <dialog>pf</dialog>
-       <supported_os>openbsd,freebsd</supported_os>
- 
-diff -urN fwbuilder-2.1.5.orig/src/res/platform/pix.xml fwbuilder-2.1.5/src/res/platform/pix.xml
---- fwbuilder-2.1.5.orig/src/res/platform/pix.xml	2006-07-24 02:11:00.000000000 +0200
-+++ fwbuilder-2.1.5/src/res/platform/pix.xml	2006-08-30 20:08:16.000000000 +0200
-@@ -2,7 +2,7 @@
- <FWBuilderResources version="2.1.5-b">
-     <Target name="pix">
-       <description>PIX</description>
--      <compiler>fwb_pix21</compiler>
-+      <compiler>fwb_pix</compiler>
-       <dialog>pix</dialog>
-       <installer>fwb_inst_pix</installer>
-       <diff>fwb_pix_diff</diff>
-diff -urN fwbuilder-2.1.5.orig/src/res/platform/pix.xml.in fwbuilder-2.1.5/src/res/platform/pix.xml.in
---- fwbuilder-2.1.5.orig/src/res/platform/pix.xml.in	2006-06-03 20:32:22.000000000 +0200
-+++ fwbuilder-2.1.5/src/res/platform/pix.xml.in	2006-08-30 20:07:48.000000000 +0200
-@@ -2,7 +2,7 @@
- <FWBuilderResources version="@VERSION@-@RELEASE_NUM@">
-     <Target name="pix">
-       <description>PIX</description>
--      <compiler>fwb_pix21</compiler>
-+      <compiler>fwb_pix</compiler>
-       <dialog>pix</dialog>
-       <installer>fwb_inst_pix</installer>
-       <diff>fwb_pix_diff</diff>
-diff -urN fwbuilder-2.1.5.orig/src/src.pro fwbuilder-2.1.5/src/src.pro
---- fwbuilder-2.1.5.orig/src/src.pro	2005-07-31 07:42:22.000000000 +0200
-+++ fwbuilder-2.1.5/src/src.pro	2006-08-30 19:28:20.000000000 +0200
-@@ -6,7 +6,8 @@
- CONFIG  += ordered
- 
+diff -Nur o.fwbuilder-2.1.12/src/src.pro n.fwbuilder-2.1.12/src/src.pro
+--- o.fwbuilder-2.1.12/src/src.pro	2007-06-07 04:33:54.000000000 +0200
++++ n.fwbuilder-2.1.12/src/src.pro	2007-06-28 01:10:37.000000000 +0200
+@@ -10,6 +10,8 @@
  TARGET   = src
--SUBDIRS  = res fwbedit fwblookup gui ipt pflib pf ipf ipfw
-+SUBDIRS  = res fwbedit fwblookup gui ipt tools pflib pf ipf ipfw
+ SUBDIRS  = res fwbedit fwblookup
  # NOTE: 2.1 does not install scripts from src/tools ( fwb_install , fwb_compile_all)
-+# PLD: but we do :D
++# but PLD do this 
++SUBDIRS	+= tools
  
- 
+ contains( HAVE_ANTLR_RUNTIME, 1 ) {
+   SUBDIRS += antlr parsers
