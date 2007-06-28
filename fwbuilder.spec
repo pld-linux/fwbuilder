@@ -8,7 +8,7 @@ Summary:	Firewall Builder
 Summary(pl.UTF-8):   Narzędzie do tworzenia firewalli
 Name:		fwbuilder
 Version:	%{_majver}.%{_minver}.12
-Release:	0.1
+Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
@@ -207,13 +207,6 @@ Pliki specyficzne dla MacOS X.
 %setup -q
 %patch0 -p1
 
-# we don't need no 21 suffixes, we know our version
-#for name in {fwb_ipf,fwb_ipfw,fwb_ipt,fwb_pf,fwbedit,fwblookup,fwbuilder}; do
-#mv doc/${name}21.1 doc/$name.1
-#done
-# Without it this app uses ccache if it's found in system even if we don't
-# want it
-
 %if %{without ccache}
 grep -vi ccache configure.in > configure.in.x
 mv configure.in.x configure.in
@@ -259,13 +252,16 @@ rm -rf $RPM_BUILD_ROOT
 %lang(de) %{_datadir}/%{name}/locale/fwbuilder_de.qm
 %lang(es) %{_datadir}/%{name}/locale/fwbuilder_es.qm
 %lang(fr) %{_datadir}/%{name}/locale/fwbuilder_fr.qm
-%lang(ru) %{_datadir}/%{name}/locale/fwbuilder_ru.qm
 %lang(ja) %{_datadir}/%{name}/locale/fwbuilder_ja.qm
+%lang(ru) %{_datadir}/%{name}/locale/fwbuilder_ru.qm
+%lang(sv) %{_datadir}/%{name}/locale/fwbuilder_sv.qm
 %dir %{_datadir}/%{name}/os
 %{_datadir}/%{name}/os/linksys.xml
 %{_datadir}/%{name}/os/unknown_os.xml
 %dir %{_datadir}/%{name}/platform
 %{_datadir}/%{name}/platform/unknown.xml
+%{_datadir}/%{name}/os/ios.xml
+%{_datadir}/%{name}/platform/iosacl.xml
 %{_desktopdir}/fwbuilder.desktop
 %{_mandir}/man1/fwbuilder*
 %{_mandir}/man1/fwblookup*
