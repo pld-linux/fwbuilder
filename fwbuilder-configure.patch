@@ -1,15 +1,22 @@
---- fwbuilder-2.0.0/qmake.inc.in.orig	2004-07-03 08:55:34.000000000 +0200
-+++ fwbuilder-2.0.0/qmake.inc.in	2004-08-01 21:17:11.261871888 +0200
-@@ -4,7 +4,7 @@
- TEMPLATE	=app
+diff -Nur o.fwbuilder-2.1.12/doc/doc.pro n.fwbuilder-2.1.12/doc/doc.pro
+--- o.fwbuilder-2.1.12/doc/doc.pro	2007-06-13 04:03:34.000000000 +0200
++++ n.fwbuilder-2.1.12/doc/doc.pro	2007-06-28 01:06:00.000000000 +0200
+@@ -52,9 +52,8 @@
+               fwb_ipfw.1            \
+               fwb_ipt.1             \
+               fwb_pf.1              \
+-
+-#             fwb_install.1           \
+-#			  fwb_compile_all.1       \
++              fwb_install.1         \
++              fwb_compile_all.1     \
  
- DEFINES      += $$(DEFINES)
--INCLUDEPATH  += ../.. $$(INCLUDEPATH)
-+INCLUDEPATH  += ../.. $$(INCLUDEPATH) /usr/include/qt
- LANGUAGE      = C++
- UI_DIR        = ui
+ man.path    = $(DDIR)$$MANDIR/man1
  
-@@ -30,7 +30,7 @@
+diff -Nur o.fwbuilder-2.1.12/qmake.inc.in n.fwbuilder-2.1.12/qmake.inc.in
+--- o.fwbuilder-2.1.12/qmake.inc.in	2007-05-18 05:16:09.000000000 +0200
++++ n.fwbuilder-2.1.12/qmake.inc.in	2007-06-28 01:06:38.000000000 +0200
+@@ -35,7 +35,7 @@
  	res_os.path             = $(DDIR)@RES_DIR@/os
  	res_platform.path       = $(DDIR)@RES_DIR@/platform
  
@@ -17,4 +24,16 @@
 +	CONFIG                 += qt thread rtti stl warn_on
  	INCLUDEPATH            += @LIBFWBUILDER_INCLUDEPATH@
  
- 	LIBS                   += $$LIBS_FWBUILDER
+ 	LIBS                   += $$LIBS_FWBUILDER @LIBS@
+diff -Nur o.fwbuilder-2.1.12/src/src.pro n.fwbuilder-2.1.12/src/src.pro
+--- o.fwbuilder-2.1.12/src/src.pro	2007-06-07 04:33:54.000000000 +0200
++++ n.fwbuilder-2.1.12/src/src.pro	2007-06-28 01:10:37.000000000 +0200
+@@ -10,6 +10,8 @@
+ TARGET   = src
+ SUBDIRS  = res fwbedit fwblookup
+ # NOTE: 2.1 does not install scripts from src/tools ( fwb_install , fwb_compile_all)
++# but PLD do this 
++SUBDIRS	+= tools
+ 
+ contains( HAVE_ANTLR_RUNTIME, 1 ) {
+   SUBDIRS += antlr parsers
