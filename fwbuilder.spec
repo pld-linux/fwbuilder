@@ -2,15 +2,17 @@
 # Conditional build:
 %bcond_with	ccache	# enable ccache
 #
+%define		_majver		2
+%define		_minver		1
 Summary:	Firewall Builder
-Summary(pl.UTF-8):	Narzędzie do tworzenia firewalli
+Summary(pl.UTF-8):   Narzędzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	2.0.12
+Version:	%{_majver}.%{_minver}.12
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
-# Source0-md5:	43149297f4a64b19ad3fa519cfff2326
+# Source0-md5:	3a46afdff88497ebb3fea156f3257f27
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-configure.patch
@@ -20,7 +22,7 @@ BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	libfwbuilder-devel = %{version}
 BuildRequires:	qmake
-BuildRequires:	qt-devel >= 6:3.2
+BuildRequires:	qt-devel >= 3.2
 %{?with_ccache:BuildRequires:	ccache}
 Requires:	libfwbuilder = %{version}
 Obsoletes:	fwbuilder-doc
@@ -35,7 +37,7 @@ Narzędzie do tworzenia i administracji firewallami.
 
 %package install
 Summary:	Install script for Firewall Builder rules
-Summary(pl.UTF-8):	Skrypt instalujący regułki tworzone przez Firewall Buildera
+Summary(pl.UTF-8):   Skrypt instalujący regułki tworzone przez Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -47,7 +49,7 @@ Skrypt instalujący regułki tworzone przez Firewall Buildera.
 
 %package compiler-ipfilter
 Summary:	ipfilter compiler for Firewall Builder
-Summary(pl.UTF-8):	Kompilator ipfilter dla Firewall Buildera
+Summary(pl.UTF-8):   Kompilator ipfilter dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -59,7 +61,7 @@ Kompilator ipfilter dla Firewall Buildera.
 
 %package compiler-iptables
 Summary:	iptables compiler for Firewall Builder
-Summary(pl.UTF-8):	Kompilator iptables dla Firewall Buildera
+Summary(pl.UTF-8):   Kompilator iptables dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -71,7 +73,7 @@ Kompilator iptables dla Firewall Buildera.
 
 %package compiler-openbsd-pf
 Summary:	OpenBSD pf compiler for Firewall Builder
-Summary(pl.UTF-8):	Kompilator OpenBSD pf dla Firewall Buildera
+Summary(pl.UTF-8):   Kompilator OpenBSD pf dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -83,7 +85,7 @@ Kompilator OpenBSD pf dla Firewall Buildera.
 
 %package compiler-cisco-fwsm
 Summary:	Cisco FWSM compiler for Firewall Builder
-Summary(pl.UTF-8):	Kompilator Cisco FWSM dla Firewall Buildera
+Summary(pl.UTF-8):   Kompilator Cisco FWSM dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -95,7 +97,7 @@ Kompilator Cisco FWSM dla Firewall Buildera.
 
 %package compiler-cisco-pix
 Summary:	Cisco PIX compiler for Firewall Builder
-Summary(pl.UTF-8):	Kompilator Cisco PIX dla Firewall Buildera
+Summary(pl.UTF-8):   Kompilator Cisco PIX dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -107,7 +109,7 @@ Kompilator Cisco PIX dla Firewall Buildera.
 
 %package compiler-freebsd-ipfw
 Summary:	FreeBSD ipfw compiler for Firewall Builder
-Summary(pl.UTF-8):	Kompilator FreeBSD ipfw dla Firewall Buildera
+Summary(pl.UTF-8):   Kompilator FreeBSD ipfw dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -119,7 +121,7 @@ Kompilator FreeBSD ipfw dla Firewall Buildera.
 
 %package platform-linux24
 Summary:	Linux 2.4 specific files
-Summary(pl.UTF-8):	Pliki specyficzne dla Linuksa 2.4
+Summary(pl.UTF-8):   Pliki specyficzne dla Linuksa 2.4
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -131,7 +133,7 @@ Pliki specyficzne dla Linuksa 2.4.
 
 %package platform-freebsd
 Summary:	FreeBSD specific files
-Summary(pl.UTF-8):	Pliki specyficzne dla FreeBSD
+Summary(pl.UTF-8):   Pliki specyficzne dla FreeBSD
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -143,7 +145,7 @@ Pliki specyficzne dla FreeBSD.
 
 %package platform-openbsd
 Summary:	OpenBSD specific files
-Summary(pl.UTF-8):	Pliki specyficzne dla OpenBSD
+Summary(pl.UTF-8):   Pliki specyficzne dla OpenBSD
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -155,7 +157,7 @@ Pliki specyficzne dla OpenBSD.
 
 %package platform-cisco-fwsm
 Summary:	Cisco PIX specific files
-Summary(pl.UTF-8):	Pliki specyficzne dla Cisco FWSM
+Summary(pl.UTF-8):   Pliki specyficzne dla Cisco FWSM
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -167,7 +169,7 @@ Pliki specyficzne dla Cisci FWSM.
 
 %package platform-cisco-pix
 Summary:	Cisco PIX specific files
-Summary(pl.UTF-8):	Pliki specyficzne dla Cisco PIX
+Summary(pl.UTF-8):   Pliki specyficzne dla Cisco PIX
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -179,7 +181,7 @@ Pliki specyficzne dla Cisci PIX.
 
 %package platform-solaris
 Summary:	Solaris specific files
-Summary(pl.UTF-8):	Pliki specyficzne dla Solarisa
+Summary(pl.UTF-8):   Pliki specyficzne dla Solarisa
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -191,7 +193,7 @@ Pliki specyficzne dla Solarisa.
 
 %package platform-macosx
 Summary:	MacOS X specific files
-Summary(pl.UTF-8):	Pliki specyficzne dla MacOS X
+Summary(pl.UTF-8):   Pliki specyficzne dla MacOS X
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -205,10 +207,7 @@ Pliki specyficzne dla MacOS X.
 %setup -q
 %patch0 -p1
 
-# Without it this app uses ccache if it's found in system even if we don't
-# want it
-
-%if !%{with ccache}
+%if %{without ccache}
 grep -vi ccache configure.in > configure.in.x
 mv configure.in.x configure.in
 %endif
@@ -253,13 +252,16 @@ rm -rf $RPM_BUILD_ROOT
 %lang(de) %{_datadir}/%{name}/locale/fwbuilder_de.qm
 %lang(es) %{_datadir}/%{name}/locale/fwbuilder_es.qm
 %lang(fr) %{_datadir}/%{name}/locale/fwbuilder_fr.qm
-%lang(ru) %{_datadir}/%{name}/locale/fwbuilder_ru.qm
 %lang(ja) %{_datadir}/%{name}/locale/fwbuilder_ja.qm
+%lang(ru) %{_datadir}/%{name}/locale/fwbuilder_ru.qm
+%lang(sv) %{_datadir}/%{name}/locale/fwbuilder_sv.qm
 %dir %{_datadir}/%{name}/os
 %{_datadir}/%{name}/os/linksys.xml
 %{_datadir}/%{name}/os/unknown_os.xml
 %dir %{_datadir}/%{name}/platform
 %{_datadir}/%{name}/platform/unknown.xml
+%{_datadir}/%{name}/os/ios.xml
+%{_datadir}/%{name}/platform/iosacl.xml
 %{_desktopdir}/fwbuilder.desktop
 %{_mandir}/man1/fwbuilder*
 %{_mandir}/man1/fwblookup*
