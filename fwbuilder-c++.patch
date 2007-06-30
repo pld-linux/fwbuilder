@@ -1,0 +1,29 @@
+--- o.fwbuilder-2.1.12/src/gui/utils.h	2007-05-23 05:05:51.000000000 +0200
++++ n.fwbuilder-2.1.12/src/gui/utils.h	2007-06-30 02:15:47.000000000 +0200
+@@ -46,7 +46,7 @@
+ #include "fwbuilder/FWObject.h"
+ #include "fwbuilder/FWReference.h"
+ 
+-typedef std::pair<const QString,QString> QStringPair;
++typedef std::pair<QString,QString> QStringPair;
+ 
+ // a predicate used to compare first string in pair<QString,QString>
+ // use with find_if
+@@ -54,7 +54,7 @@
+     QString str;
+     public:
+     findFirstInQStringPair(const QString &d) { str=d; }
+-    bool operator()(std::pair<const QString,QString> &_d)
++    bool operator()(std::pair<QString,QString> &_d)
+     { return (str == _d.first); }
+ };
+ 
+@@ -62,7 +62,7 @@
+     QString str;
+     public:
+     findSecondInQStringPair(const QString &d) { str=d; }
+-    bool operator()(std::pair<const QString,QString> &_d)
++    bool operator()(std::pair<QString,QString> &_d)
+     { return (str == _d.second); }
+ };
+ 
