@@ -8,7 +8,7 @@ Summary:	Firewall Builder
 Summary(pl.UTF-8):   Narzędzie do tworzenia firewalli
 Name:		fwbuilder
 Version:	%{_majver}.%{_minver}.12
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
@@ -16,6 +16,7 @@ Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-configure.patch
+Patch1:		%{name}-c++.patch
 URL:		http://www.fwbuilder.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -206,6 +207,7 @@ Pliki specyficzne dla MacOS X.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %if %{without ccache}
 grep -vi ccache configure.in > configure.in.x
