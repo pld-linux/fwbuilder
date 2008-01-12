@@ -18,6 +18,7 @@ Source2:	%{name}.png
 Patch0:		%{name}-configure.patch
 Patch1:		%{name}-c++.patch
 URL:		http://www.fwbuilder.org/
+BuildRequires:	antlr = 2.7.7
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
@@ -25,7 +26,6 @@ BuildRequires:	libfwbuilder-devel = %{version}
 BuildRequires:	qmake
 BuildRequires:	qt-devel >= 3.2
 %{?with_ccache:BuildRequires:	ccache}
-BuildConflicts:	antlr
 Requires:	libfwbuilder = %{version}
 Obsoletes:	fwbuilder-doc
 Obsoletes:	fwbuilder-devel
