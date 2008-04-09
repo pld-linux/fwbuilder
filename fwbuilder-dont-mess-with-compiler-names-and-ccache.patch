@@ -1,0 +1,84 @@
+--- b.fwbuilder-2.1.18/runqmake.sh	2008-03-06 07:48:54.000000000 +0100
++++ n.fwbuilder-2.1.18/runqmake.sh	2008-04-09 19:58:44.000000000 +0200
+@@ -17,56 +17,29 @@
+ ${QMAKE} -o doc/Makefile        doc/doc.pro
+ ${QMAKE} -o po/Makefile         po/po.pro
+ 
+-if test -n "$CCACHE"; then
+-
+     test -d src/unit_tests && {
+-        ${QMAKE} 'QMAKE_CXX=ccache g++'  -o src/unit_tests/importer/Makefile  \
++        ${QMAKE} QMAKE_CXX="$CXX"  -o src/unit_tests/importer/Makefile  \
+             src/unit_tests/importer/importer.pro
+     }
+ 
+-    ${QMAKE} 'QMAKE_CXX=ccache g++'  -o src/antlr/Makefile src/antlr/antlr.pro
++    ${QMAKE} QMAKE_CXX="$CXX"  -o src/antlr/Makefile src/antlr/antlr.pro
+ 
+-    ${QMAKE} 'QMAKE_CXX=ccache g++'  -o src/gui/Makefile src/gui/gui.pro
+-    ${QMAKE} 'QMAKE_CXX=ccache g++'  -o src/fwblookup/Makefile \
++    ${QMAKE} QMAKE_CXX="$CXX"  -o src/gui/Makefile src/gui/gui.pro
++    ${QMAKE} QMAKE_CXX="$CXX"  -o src/fwblookup/Makefile \
+         src/fwblookup/fwblookup.pro
+-    ${QMAKE} 'QMAKE_CXX=ccache g++'  -o src/fwbedit/Makefile \
++    ${QMAKE} QMAKE_CXX="$CXX"  -o src/fwbedit/Makefile \
+         src/fwbedit/fwbedit.pro
+-    ${QMAKE} 'QMAKE_CXX=ccache g++'  -o src/ipt/Makefile src/ipt/ipt.pro
+-    ${QMAKE} 'QMAKE_CXX=ccache g++'  -o src/pflib/Makefile src/pflib/pflib.pro
+-    ${QMAKE} 'QMAKE_CXX=ccache g++'  -o src/pf/Makefile src/pf/pf.pro
+-    ${QMAKE} 'QMAKE_CXX=ccache g++'  -o src/ipf/Makefile src/ipf/ipf.pro
+-    ${QMAKE} 'QMAKE_CXX=ccache g++'  -o src/ipfw/Makefile src/ipfw/ipfw.pro
+-    ${QMAKE} 'QMAKE_CXX=ccache g++'  -o src/cisco_lib/Makefile \
++    ${QMAKE} QMAKE_CXX="$CXX"  -o src/ipt/Makefile src/ipt/ipt.pro
++    ${QMAKE} QMAKE_CXX="$CXX"  -o src/pflib/Makefile src/pflib/pflib.pro
++    ${QMAKE} QMAKE_CXX="$CXX"  -o src/pf/Makefile src/pf/pf.pro
++    ${QMAKE} QMAKE_CXX="$CXX"  -o src/ipf/Makefile src/ipf/ipf.pro
++    ${QMAKE} QMAKE_CXX="$CXX"  -o src/ipfw/Makefile src/ipfw/ipfw.pro
++    ${QMAKE} QMAKE_CXX="$CXX"  -o src/cisco_lib/Makefile \
+         src/cisco_lib/cisco_lib.pro
+-    ${QMAKE} 'QMAKE_CXX=ccache g++'  -o src/iosacl/Makefile \
++    ${QMAKE} QMAKE_CXX="$CXX"  -o src/iosacl/Makefile \
+         src/iosacl/iosacl.pro
+-    ${QMAKE} 'QMAKE_CXX=ccache g++'  -o src/pix/Makefile src/pix/pix.pro
++    ${QMAKE} QMAKE_CXX="$CXX"  -o src/pix/Makefile src/pix/pix.pro
+ 
+-    ${QMAKE} 'QMAKE_CXX=ccache g++'  -o src/parsers/Makefile \
++    ${QMAKE} QMAKE_CXX="$CXX"  -o src/parsers/Makefile \
+         src/parsers/parsers.pro
+ 
+-else
+-
+-    test -d src/unit_tests && {
+-        ${QMAKE} -o src/unit_tests/importer/Makefile  \
+-            src/unit_tests/importer/importer.pro
+-    }
+-
+-    ${QMAKE}  -o src/antlr/Makefile     src/antlr/antlr.pro
+-
+-    ${QMAKE}  -o src/gui/Makefile       src/gui/gui.pro
+-    ${QMAKE}  -o src/fwblookup/Makefile src/fwblookup/fwblookup.pro
+-    ${QMAKE}  -o src/fwbedit/Makefile   src/fwbedit/fwbedit.pro
+-    ${QMAKE}  -o src/ipt/Makefile       src/ipt/ipt.pro
+-    ${QMAKE}  -o src/pflib/Makefile     src/pflib/pflib.pro
+-    ${QMAKE}  -o src/pf/Makefile        src/pf/pf.pro
+-    ${QMAKE}  -o src/ipf/Makefile       src/ipf/ipf.pro
+-    ${QMAKE}  -o src/ipfw/Makefile      src/ipfw/ipfw.pro
+-    ${QMAKE}  -o src/cisco_lib/Makefile src/cisco_lib/cisco_lib.pro
+-    ${QMAKE}  -o src/iosacl/Makefile    src/iosacl/iosacl.pro
+-    ${QMAKE}  -o src/pix/Makefile       src/pix/pix.pro
+-
+-    ${QMAKE}  -o src/parsers/Makefile   src/parsers/parsers.pro
+-
+-fi
+-
+--- fwbuilder-2.1.18/configure.in~	2008-04-09 20:04:20.000000000 +0200
++++ fwbuilder-2.1.18/configure.in	2008-04-09 20:04:25.000000000 +0200
+@@ -423,8 +423,6 @@
+ 
+ AC_SUBST(MANDIR)
+ 
+-AC_PATH_PROG(CCACHE, ccache, , )
+-
+ dnl Support for the po directory.
+ AM_PO_SUBDIRS
+ 
