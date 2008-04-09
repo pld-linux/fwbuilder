@@ -1,22 +1,20 @@
 #
-# Conditional build:
-%bcond_with	ccache	# enable ccache
-#
 %define		_majver		2
 %define		_minver		1
 Summary:	Firewall Builder
 Summary(pl.UTF-8):   Narzędzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	%{_majver}.%{_minver}.16
-Release:	3
+Version:	%{_majver}.%{_minver}.18
+Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
-# Source0-md5:	bb8b0c12f213dbfadb9fc43b53ed6785
+# Source0-md5:	dade153059782164b0d326f964eca63a
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-configure.patch
 Patch1:		%{name}-c++.patch
+Patch2:		%{name}-dont-mess-with-compiler-names-and-ccache.patch
 URL:		http://www.fwbuilder.org/
 BuildRequires:	antlr = 2.7.7
 BuildRequires:	autoconf
@@ -25,7 +23,6 @@ BuildRequires:	gettext-devel
 BuildRequires:	libfwbuilder-devel = %{version}
 BuildRequires:	qmake
 BuildRequires:	qt-devel >= 3.2
-%{?with_ccache:BuildRequires:	ccache}
 Requires:	libfwbuilder = %{version}
 Obsoletes:	fwbuilder-doc
 Obsoletes:	fwbuilder-devel
@@ -96,6 +93,18 @@ Cisco FWSM compiler for Firewall Builder.
 
 %description compiler-cisco-fwsm -l pl.UTF-8
 Kompilator Cisco FWSM dla Firewall Buildera.
+
+%package compiler-cisco-iosacl
+Summary:	Cisco IOSACL compiler for Firewall Builder
+Summary(pl.UTF-8):   Kompilator Cisco IOSACL dla Firewall Buildera
+Group:		Applications/System
+Requires:	%{name} = %{version}-%{release}
+
+%description compiler-cisco-iosacl
+Cisco FWSM compiler for Firewall Builder.
+
+%description compiler-cisco-iosacl -l pl.UTF-8
+Kompilator Cisco IOSACL dla Firewall Buildera.
 
 %package compiler-cisco-pix
 Summary:	Cisco PIX compiler for Firewall Builder
@@ -209,11 +218,7 @@ Pliki specyficzne dla MacOS X.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-
-%if %{without ccache}
-grep -vi ccache configure.in > configure.in.x
-mv configure.in.x configure.in
-%endif
+%patch2 -p1
 
 %build
 export QTDIR="%{_usr}"
@@ -256,6 +261,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(es) %{_datadir}/%{name}/locale/fwbuilder_es.qm
 %lang(fr) %{_datadir}/%{name}/locale/fwbuilder_fr.qm
 %lang(ja) %{_datadir}/%{name}/locale/fwbuilder_ja.qm
+%lang(pt_BR) %{_datadir}/%{name}/locale/fwbuilder_pt_BR.qm
 %lang(ru) %{_datadir}/%{name}/locale/fwbuilder_ru.qm
 %lang(sv) %{_datadir}/%{name}/locale/fwbuilder_sv.qm
 %dir %{_datadir}/%{name}/os
@@ -281,34 +287,41 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fwb_ipt
 %{_datadir}/%{name}/platform/iptables.xml
-%{_mandir}/man1/fwb_ipt*
+%{_mandir}/man1/fwb_ipt.1*
 
 %files compiler-ipfilter
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fwb_ipf
 %{_datadir}/%{name}/platform/ipf.xml
-%{_mandir}/man1/fwb_ipf*
+%{_mandir}/man1/fwb_ipf.1*
 
 %files compiler-openbsd-pf
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fwb_pf
 %{_datadir}/%{name}/platform/pf.xml
-%{_mandir}/man1/fwb_pf*
+%{_mandir}/man1/fwb_pf.1*
 
 %files compiler-cisco-fwsm
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/platform/fwsm.xml
 
+%files compiler-cisco-iosacl
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/fwb_iosacl
+%{_datadir}/%{name}/platform/iosacl.xml
+%{_mandir}/man1/fwb_iosacl.1*
+
 %files compiler-cisco-pix
 %defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/fwb_pix
+%attr(755,root,root) %{_bindir}/fwb_pix
 %{_datadir}/%{name}/platform/pix.xml
-#%%{_mandir}/man1/fwb_pix*
+%{_mandir}/man1/fwb_pix.1*
 
 %files compiler-freebsd-ipfw
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fwb_ipfw
 %{_datadir}/%{name}/platform/ipfw.xml
+%{_mandir}/man1/fwb_ipfw.1*
 
 %files platform-linux24
 %defattr(644,root,root,755)
