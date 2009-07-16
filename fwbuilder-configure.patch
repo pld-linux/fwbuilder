@@ -1,15 +1,3 @@
-diff -Nur o.fwbuilder-2.1.12/qmake.inc.in n.fwbuilder-2.1.12/qmake.inc.in
---- o.fwbuilder-2.1.12/qmake.inc.in	2007-05-18 05:16:09.000000000 +0200
-+++ n.fwbuilder-2.1.12/qmake.inc.in	2007-06-28 01:06:38.000000000 +0200
-@@ -35,7 +35,7 @@
- 	res_os.path             = $(DDIR)@RES_DIR@/os
- 	res_platform.path       = $(DDIR)@RES_DIR@/platform
- 
--	CONFIG                 += qt thread rtti stl warn_on debug
-+	CONFIG                 += qt thread rtti stl warn_on
- 	INCLUDEPATH            += @LIBFWBUILDER_INCLUDEPATH@
- 
- 	LIBS                   += $$LIBS_FWBUILDER @LIBS@
 diff -Nur o.fwbuilder-2.1.12/src/src.pro n.fwbuilder-2.1.12/src/src.pro
 --- o.fwbuilder-2.1.12/src/src.pro	2007-06-07 04:33:54.000000000 +0200
 +++ n.fwbuilder-2.1.12/src/src.pro	2007-06-28 01:10:37.000000000 +0200
@@ -22,14 +10,28 @@ diff -Nur o.fwbuilder-2.1.12/src/src.pro n.fwbuilder-2.1.12/src/src.pro
  
  contains( HAVE_ANTLR_RUNTIME, 1 ) {
    SUBDIRS += antlr parsers
---- b.fwbuilder-2.1.18/doc/doc.pro	2008-04-06 07:25:16.000000000 +0200
-+++ n.fwbuilder-2.1.18/doc/doc.pro	2008-04-09 19:55:06.000000000 +0200
-@@ -67,6 +67,8 @@
+--- fwbuilder-3.0.5-orig/qmake.inc.in	2009-06-24 18:59:55.000000000 +0200
++++ fwbuilder-3.0.5/qmake.inc.in	2009-07-15 14:34:56.350185928 +0200
+@@ -58,7 +58,7 @@ unix {
+ 
+         PKGLOCALEDIR = $$res.path/locale
+ 
+-        CONFIG += warn_on debug
++        CONFIG += warn_on
+         QMAKE_CFLAGS_DEBUG += -Wno-unused-parameter
+         QMAKE_CFLAGS_RELEASE += -Wno-unused-parameter
+         QMAKE_CXXFLAGS_DEBUG += -Wno-unused-parameter @CXXFLAGS@
+--- fwbuilder-3.0.5-orig/doc/doc.pro	2009-06-24 18:59:48.000000000 +0200
++++ fwbuilder-3.0.5/doc/doc.pro	2009-07-15 14:36:50.350151695 +0200
+@@ -48,9 +48,8 @@ man.files   = fwbedit.1             \
+               fwb_ipt.1             \
                fwb_pf.1              \
                fwb_pix.1             \
-               fwb_iosacl.1          \
-+              fwb_install.1          \
-+              fwb_compile_all.1          
+-
+-#             fwb_install.1           \
+-#			  fwb_compile_all.1       \
++              fwb_install.1           \
++              fwb_compile_all.1       \
  
- man.path    = $(DDIR)$$MANDIR/man1
+ man.path    = $$MANDIR/man1
  

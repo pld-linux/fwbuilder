@@ -1,15 +1,15 @@
 #
-%define		_majver		2
-%define		_minver		1
+%define		_majver		3
+%define		_minver		0
 Summary:	Firewall Builder
 Summary(pl.UTF-8):   Narzędzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	%{_majver}.%{_minver}.18
+Version:	%{_majver}.%{_minver}.5
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
-# Source0-md5:	dade153059782164b0d326f964eca63a
+# Source0-md5:	d4d914882a215e6d651dc7094ea88a36
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-configure.patch
@@ -21,8 +21,11 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	libfwbuilder-devel = %{version}
-BuildRequires:	qmake
-BuildRequires:	qt-devel >= 3.2
+BuildRequires:	qt4-build
+BuildRequires:	qt4-qmake
+BuildRequires:	QtCore-devel >= 4.3
+BuildRequires:	QtGui-devel >= 4.3
+BuildRequires:	QtNetwork-devel >= 4.3
 Requires:	libfwbuilder = %{version}
 Obsoletes:	fwbuilder-doc
 Obsoletes:	fwbuilder-devel
@@ -34,17 +37,17 @@ Firewall administration toolkit.
 %description -l pl.UTF-8
 Narzędzie do tworzenia i administracji firewallami.
 
-%package install
-Summary:	Install script for Firewall Builder rules
-Summary(pl.UTF-8):   Skrypt instalujący regułki tworzone przez Firewall Buildera
-Group:		Applications/System
-Requires:	%{name} = %{version}-%{release}
+#%package install
+#Summary:	Install script for Firewall Builder rules
+#Summary(pl.UTF-8):   Skrypt instalujący regułki tworzone przez Firewall Buildera
+#Group:		Applications/System
+#Requires:	%{name} = %{version}-%{release}
 
-%description install
-Install script for Firewall Builder rules.
+#%description install
+#Install script for Firewall Builder rules.
 
-%description install -l pl.UTF-8
-Skrypt instalujący regułki tworzone przez Firewall Buildera.
+#%description install -l pl.UTF-8
+#Skrypt instalujący regułki tworzone przez Firewall Buildera.
 
 %package compiler-ipfilter
 Summary:	ipfilter compiler for Firewall Builder
@@ -218,17 +221,18 @@ Pliki specyficzne dla MacOS X.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
+#%patch2 -p1
 
 %build
 export QTDIR="%{_usr}"
-export QMAKESPEC="%{_datadir}/qt/mkspecs/linux-g++"
+export QMAKESPEC="%{_datadir}/qt4/mkspecs/linux-g++"
 
 cp -f /usr/share/automake/config.* .
 %{__aclocal}
 %{__autoconf}
 %configure \
-	--with-templatedir=%{_datadir}/fwbuilder
+	--with-templatedir=%{_datadir}/fwbuilder \
+	--with-qmake=qmake-qt4
 %{__make}
 
 %install
@@ -239,7 +243,7 @@ export QTDIR="%{_usr}"
 export QMAKESPEC="%{_datadir}/qt/mkspecs/linux-g++"
 
 %{__make} install \
-	DDIR=$RPM_BUILD_ROOT
+	INSTALL_ROOT=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
@@ -252,18 +256,18 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/{AUTHORS,ChangeLog,Credits,README*,*.html}
 %attr(755,root,root) %{_bindir}/fwb_compile_all
 %attr(755,root,root) %{_bindir}/fwbedit
-%attr(755,root,root) %{_bindir}/fwblookup
+#%attr(755,root,root) %{_bindir}/fwblookup
 %attr(755,root,root) %{_bindir}/fwbuilder
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/*.xml
 %dir %{_datadir}/%{name}/locale
-%lang(de) %{_datadir}/%{name}/locale/fwbuilder_de.qm
-%lang(es) %{_datadir}/%{name}/locale/fwbuilder_es.qm
-%lang(fr) %{_datadir}/%{name}/locale/fwbuilder_fr.qm
+#%lang(de) %{_datadir}/%{name}/locale/fwbuilder_de.qm
+#%lang(es) %{_datadir}/%{name}/locale/fwbuilder_es.qm
+#%lang(fr) %{_datadir}/%{name}/locale/fwbuilder_fr.qm
 %lang(ja) %{_datadir}/%{name}/locale/fwbuilder_ja.qm
-%lang(pt_BR) %{_datadir}/%{name}/locale/fwbuilder_pt_BR.qm
+#%lang(pt_BR) %{_datadir}/%{name}/locale/fwbuilder_pt_BR.qm
 %lang(ru) %{_datadir}/%{name}/locale/fwbuilder_ru.qm
-%lang(sv) %{_datadir}/%{name}/locale/fwbuilder_sv.qm
+#%lang(sv) %{_datadir}/%{name}/locale/fwbuilder_sv.qm
 %dir %{_datadir}/%{name}/os
 %{_datadir}/%{name}/os/linksys.xml
 %{_datadir}/%{name}/os/unknown_os.xml
@@ -273,15 +277,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/platform/iosacl.xml
 %{_desktopdir}/fwbuilder.desktop
 %{_mandir}/man1/fwbuilder*
-%{_mandir}/man1/fwblookup*
+#%{_mandir}/man1/fwblookup*
 %{_mandir}/man1/fwb_compile_all*
 %{_mandir}/man1/fwbedit*
 %{_pixmapsdir}/fwbuilder.png
+%{_iconsdir}/hicolor/*/apps/fwbuilder.png
 
-%files install
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/fwb_install
-%{_mandir}/man1/fwb_install*
+#%files install
+#%defattr(644,root,root,755)
+#%attr(755,root,root) %{_bindir}/fwb_install
+#%{_mandir}/man1/fwb_install*
 
 %files compiler-iptables
 %defattr(644,root,root,755)
