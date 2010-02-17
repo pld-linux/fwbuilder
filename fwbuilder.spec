@@ -5,7 +5,7 @@ Summary:	Firewall Builder
 Summary(pl.UTF-8):   Narzędzie do tworzenia firewalli
 Name:		fwbuilder
 Version:	%{_majver}.%{_minver}.5
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
@@ -247,6 +247,9 @@ export QMAKESPEC="%{_datadir}/qt/mkspecs/linux-g++"
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
+
+# drop 512x512 icon
+rm -rf $RPM_BUILD_ROOT%{_iconsdir}/hicolor/512x512
 
 %clean
 rm -rf $RPM_BUILD_ROOT
