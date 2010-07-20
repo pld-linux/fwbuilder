@@ -1,15 +1,15 @@
 #
-%define		_majver		3
+%define		_majver		4
 %define		_minver		0
 Summary:	Firewall Builder
 Summary(pl.UTF-8):   Narzędzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	%{_majver}.%{_minver}.5
-Release:	3
+Version:	%{_majver}.%{_minver}.2
+Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
-# Source0-md5:	d4d914882a215e6d651dc7094ea88a36
+# Source0-md5:	1b9db7197f10224049f21b68ab6632e7
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-configure.patch
@@ -36,18 +36,6 @@ Firewall administration toolkit.
 
 %description -l pl.UTF-8
 Narzędzie do tworzenia i administracji firewallami.
-
-#%package install
-#Summary:	Install script for Firewall Builder rules
-#Summary(pl.UTF-8):   Skrypt instalujący regułki tworzone przez Firewall Buildera
-#Group:		Applications/System
-#Requires:	%{name} = %{version}-%{release}
-
-#%description install
-#Install script for Firewall Builder rules.
-
-#%description install -l pl.UTF-8
-#Skrypt instalujący regułki tworzone przez Firewall Buildera.
 
 %package compiler-ipfilter
 Summary:	ipfilter compiler for Firewall Builder
@@ -133,6 +121,18 @@ FreeBSD ipfw compiler for Firewall Builder.
 %description compiler-freebsd-ipfw -l pl.UTF-8
 Kompilator FreeBSD ipfw dla Firewall Buildera.
 
+%package compiler-procurve
+Summary:	HP Procurve compiler for Firewall Builder
+Summary(pl.UTF-8):   Kompilator HP Procurve dla Firewall Buildera
+Group:		Applications/System
+Requires:	%{name} = %{version}-%{release}
+
+%description compiler-procurve
+HP Procurve compiler for Firewall Builder.
+
+%description compiler-procurve -l pl.UTF-8
+Kompilator HP Procurve dla Firewall Buildera.
+
 %package platform-linux24
 Summary:	Linux 2.4 specific files
 Summary(pl.UTF-8):   Pliki specyficzne dla Linuksa 2.4
@@ -145,53 +145,41 @@ Linux 2.4 specific files.
 %description platform-linux24 -l pl.UTF-8
 Pliki specyficzne dla Linuksa 2.4.
 
-%package platform-freebsd
-Summary:	FreeBSD specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla FreeBSD
+%package platform-bsd
+Summary:	Variuos BSD specific files
+Summary(pl.UTF-8):   Pliki specyficzne dla różnych BSD
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
-%description platform-freebsd
-FreeBSD specific files.
+%description platform-bsd
+Variuos BSD specific files.
 
-%description platform-freebsd -l pl.UTF-8
-Pliki specyficzne dla FreeBSD.
+%description platform-bsd -l pl.UTF-8
+Pliki specyficzne dla róznych BSD.
 
-%package platform-openbsd
-Summary:	OpenBSD specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla OpenBSD
+%package platform-cisco
+Summary:	Cisco specific files
+Summary(pl.UTF-8):   Pliki specyficzne dla Cisco
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
-%description platform-openbsd
-OpenBSD specific files.
+%description platform-cisco
+Cisco specific files.
 
-%description platform-openbsd -l pl.UTF-8
-Pliki specyficzne dla OpenBSD.
+%description platform-cisco -l pl.UTF-8
+Pliki specyficzne dla Cisco.
 
-%package platform-cisco-fwsm
-Summary:	Cisco PIX specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla Cisco FWSM
+%package platform-procurve
+Summary:	HP Procurve specific files
+Summary(pl.UTF-8):   Pliki specyficzne dla HP Procurve
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
-%description platform-cisco-fwsm
-Cisco FWSM specific files.
+%description platform-procurve
+HP Procurve specific files.
 
-%description platform-cisco-fwsm -l pl.UTF-8
-Pliki specyficzne dla Cisci FWSM.
-
-%package platform-cisco-pix
-Summary:	Cisco PIX specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla Cisco PIX
-Group:		Applications/System
-Requires:	%{name} = %{version}-%{release}
-
-%description platform-cisco-pix
-Cisco PIX specific files.
-
-%description platform-cisco-pix -l pl.UTF-8
-Pliki specyficzne dla Cisci PIX.
+%description platform-procurve -l pl.UTF-8
+Pliki specyficzne dla HP Procurve.
 
 %package platform-solaris
 Summary:	Solaris specific files
@@ -219,7 +207,7 @@ Pliki specyficzne dla MacOS X.
 
 %prep
 %setup -q
-%patch0 -p1
+#%patch0 -p1
 %patch1 -p1
 #%patch2 -p1
 
@@ -257,39 +245,23 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/{AUTHORS,ChangeLog,Credits,README*,*.html}
-%attr(755,root,root) %{_bindir}/fwb_compile_all
 %attr(755,root,root) %{_bindir}/fwbedit
-#%attr(755,root,root) %{_bindir}/fwblookup
 %attr(755,root,root) %{_bindir}/fwbuilder
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/*.xml
+%dir %{_datadir}/%{name}/configlets
 %dir %{_datadir}/%{name}/locale
-#%lang(de) %{_datadir}/%{name}/locale/fwbuilder_de.qm
-#%lang(es) %{_datadir}/%{name}/locale/fwbuilder_es.qm
-#%lang(fr) %{_datadir}/%{name}/locale/fwbuilder_fr.qm
-%lang(ja) %{_datadir}/%{name}/locale/fwbuilder_ja.qm
-#%lang(pt_BR) %{_datadir}/%{name}/locale/fwbuilder_pt_BR.qm
-%lang(ru) %{_datadir}/%{name}/locale/fwbuilder_ru.qm
-#%lang(sv) %{_datadir}/%{name}/locale/fwbuilder_sv.qm
 %dir %{_datadir}/%{name}/os
-%{_datadir}/%{name}/os/linksys.xml
 %{_datadir}/%{name}/os/unknown_os.xml
+%{_datadir}/%{name}/os/endian.xml
+%{_datadir}/%{name}/os/oneshield.xml
 %dir %{_datadir}/%{name}/platform
 %{_datadir}/%{name}/platform/unknown.xml
-%{_datadir}/%{name}/os/ios.xml
-%{_datadir}/%{name}/platform/iosacl.xml
 %{_desktopdir}/fwbuilder.desktop
 %{_mandir}/man1/fwbuilder*
-#%{_mandir}/man1/fwblookup*
-%{_mandir}/man1/fwb_compile_all*
 %{_mandir}/man1/fwbedit*
 %{_pixmapsdir}/fwbuilder.png
 %{_iconsdir}/hicolor/*/apps/fwbuilder.png
-
-#%files install
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/fwb_install
-#%{_mandir}/man1/fwb_install*
 
 %files compiler-iptables
 %defattr(644,root,root,755)
@@ -331,30 +303,59 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/platform/ipfw.xml
 %{_mandir}/man1/fwb_ipfw.1*
 
+%files compiler-procurve
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/fwb_procurve_acl
+%{_datadir}/%{name}/platform/procurve_acl.xml
+
 %files platform-linux24
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/transfer_secuwall
+%{_datadir}/%{name}/configlets/dd-wrt-jffs
+%{_datadir}/%{name}/configlets/dd-wrt-nvram
+%{_datadir}/%{name}/configlets/ipcop
+%{_datadir}/%{name}/configlets/openwrt
+%{_datadir}/%{name}/configlets/ipf
+%{_datadir}/%{name}/configlets/linux24
+%{_datadir}/%{name}/configlets/secuwall
+%{_datadir}/%{name}/configlets/sveasoft
 %{_datadir}/%{name}/os/linux24.xml
+%{_datadir}/%{name}/os/dd-wrt-jffs.xml
+%{_datadir}/%{name}/os/dd-wrt-nvram.xml
+%{_datadir}/%{name}/os/ipcop.xml
+%{_datadir}/%{name}/os/openwrt.xml
+%{_datadir}/%{name}/os/secuwall.xml
+%{_datadir}/%{name}/os/sveasoft.xml
 
-%files platform-freebsd
+%files platform-bsd
 %defattr(644,root,root,755)
+%{_datadir}/%{name}/configlets/bsd
+%{_datadir}/%{name}/configlets/freebsd
+%{_datadir}/%{name}/configlets/ipfw
+%{_datadir}/%{name}/configlets/openbsd
+%{_datadir}/%{name}/configlets/pf
 %{_datadir}/%{name}/os/freebsd.xml
-
-%files platform-openbsd
-%defattr(644,root,root,755)
 %{_datadir}/%{name}/os/openbsd.xml
 
-%files platform-cisco-fwsm
+%files platform-cisco
 %defattr(644,root,root,755)
+%{_datadir}/%{name}/configlets/ios
+%{_datadir}/%{name}/configlets/pix_os
+%{_datadir}/%{name}/os/ios.xml
+%{_datadir}/%{name}/os/pix_os.xml
 %{_datadir}/%{name}/os/fwsm_os.xml
 
-%files platform-cisco-pix
+%files platform-procurve
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/os/pix_os.xml
+%{_datadir}/%{name}/configlets/procurve
+%{_datadir}/%{name}/os/procurve.xml
 
 %files platform-solaris
 %defattr(644,root,root,755)
+%{_datadir}/%{name}/configlets/solaris
 %{_datadir}/%{name}/os/solaris.xml
 
 %files platform-macosx
 %defattr(644,root,root,755)
+%{_datadir}/%{name}/configlets/macosx
 %{_datadir}/%{name}/os/macosx.xml
