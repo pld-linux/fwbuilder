@@ -1,22 +1,21 @@
 #
 %define		_majver		4
-%define		_minver		0
+%define		_minver		1
 Summary:	Firewall Builder
 Summary(pl.UTF-8):   Narzędzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	%{_majver}.%{_minver}.2
+Version:	%{_majver}.%{_minver}.1
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
-# Source0-md5:	1b9db7197f10224049f21b68ab6632e7
+# Source0-md5:	efa0b687089dc88ed3d55e7da68f9198
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-configure.patch
 Patch1:		%{name}-c++.patch
 Patch2:		%{name}-dont-mess-with-compiler-names-and-ccache.patch
 URL:		http://www.fwbuilder.org/
-BuildRequires:	antlr = 2.7.7
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
@@ -24,6 +23,7 @@ BuildRequires:	libfwbuilder-devel = %{version}
 BuildRequires:	qt4-build
 BuildRequires:	qt4-qmake
 BuildRequires:	QtCore-devel >= 4.3
+BuildRequires:	QtDBus-devel >= 4.3
 BuildRequires:	QtGui-devel >= 4.3
 BuildRequires:	QtNetwork-devel >= 4.3
 Requires:	libfwbuilder = %{version}
