@@ -2,33 +2,33 @@
 %define		_majver		4
 %define		_minver		1
 Summary:	Firewall Builder
-Summary(pl.UTF-8):   Narzędzie do tworzenia firewalli
+Summary(pl.UTF-8):	Narzędzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	%{_majver}.%{_minver}.1
+Version:	%{_majver}.%{_minver}.2
 Release:	1
 License:	GPL v2
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
-# Source0-md5:	efa0b687089dc88ed3d55e7da68f9198
+Source0:	http://downloads.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
+# Source0-md5:	9ba75a515745304247df5be1885b5e0f
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-configure.patch
 Patch1:		%{name}-c++.patch
 Patch2:		%{name}-dont-mess-with-compiler-names-and-ccache.patch
 URL:		http://www.fwbuilder.org/
+BuildRequires:	QtCore-devel >= 4.3
+BuildRequires:	QtDBus-devel >= 4.3
+BuildRequires:	QtGui-devel >= 4.3
+BuildRequires:	QtNetwork-devel >= 4.3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	libfwbuilder-devel = %{version}
 BuildRequires:	qt4-build
 BuildRequires:	qt4-qmake
-BuildRequires:	QtCore-devel >= 4.3
-BuildRequires:	QtDBus-devel >= 4.3
-BuildRequires:	QtGui-devel >= 4.3
-BuildRequires:	QtNetwork-devel >= 4.3
 Requires:	libfwbuilder = %{version}
-Obsoletes:	fwbuilder-doc
 Obsoletes:	fwbuilder-devel
+Obsoletes:	fwbuilder-doc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -39,7 +39,7 @@ Narzędzie do tworzenia i administracji firewallami.
 
 %package compiler-ipfilter
 Summary:	ipfilter compiler for Firewall Builder
-Summary(pl.UTF-8):   Kompilator ipfilter dla Firewall Buildera
+Summary(pl.UTF-8):	Kompilator ipfilter dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -51,7 +51,7 @@ Kompilator ipfilter dla Firewall Buildera.
 
 %package compiler-iptables
 Summary:	iptables compiler for Firewall Builder
-Summary(pl.UTF-8):   Kompilator iptables dla Firewall Buildera
+Summary(pl.UTF-8):	Kompilator iptables dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -63,7 +63,7 @@ Kompilator iptables dla Firewall Buildera.
 
 %package compiler-openbsd-pf
 Summary:	OpenBSD pf compiler for Firewall Builder
-Summary(pl.UTF-8):   Kompilator OpenBSD pf dla Firewall Buildera
+Summary(pl.UTF-8):	Kompilator OpenBSD pf dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -75,7 +75,7 @@ Kompilator OpenBSD pf dla Firewall Buildera.
 
 %package compiler-cisco-fwsm
 Summary:	Cisco FWSM compiler for Firewall Builder
-Summary(pl.UTF-8):   Kompilator Cisco FWSM dla Firewall Buildera
+Summary(pl.UTF-8):	Kompilator Cisco FWSM dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -87,7 +87,7 @@ Kompilator Cisco FWSM dla Firewall Buildera.
 
 %package compiler-cisco-iosacl
 Summary:	Cisco IOSACL compiler for Firewall Builder
-Summary(pl.UTF-8):   Kompilator Cisco IOSACL dla Firewall Buildera
+Summary(pl.UTF-8):	Kompilator Cisco IOSACL dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -99,7 +99,7 @@ Kompilator Cisco IOSACL dla Firewall Buildera.
 
 %package compiler-cisco-pix
 Summary:	Cisco PIX compiler for Firewall Builder
-Summary(pl.UTF-8):   Kompilator Cisco PIX dla Firewall Buildera
+Summary(pl.UTF-8):	Kompilator Cisco PIX dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -111,7 +111,7 @@ Kompilator Cisco PIX dla Firewall Buildera.
 
 %package compiler-freebsd-ipfw
 Summary:	FreeBSD ipfw compiler for Firewall Builder
-Summary(pl.UTF-8):   Kompilator FreeBSD ipfw dla Firewall Buildera
+Summary(pl.UTF-8):	Kompilator FreeBSD ipfw dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -123,7 +123,7 @@ Kompilator FreeBSD ipfw dla Firewall Buildera.
 
 %package compiler-procurve
 Summary:	HP Procurve compiler for Firewall Builder
-Summary(pl.UTF-8):   Kompilator HP Procurve dla Firewall Buildera
+Summary(pl.UTF-8):	Kompilator HP Procurve dla Firewall Buildera
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -135,7 +135,7 @@ Kompilator HP Procurve dla Firewall Buildera.
 
 %package platform-linux24
 Summary:	Linux 2.4 specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla Linuksa 2.4
+Summary(pl.UTF-8):	Pliki specyficzne dla Linuksa 2.4
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -147,7 +147,7 @@ Pliki specyficzne dla Linuksa 2.4.
 
 %package platform-bsd
 Summary:	Variuos BSD specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla różnych BSD
+Summary(pl.UTF-8):	Pliki specyficzne dla różnych BSD
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -159,7 +159,7 @@ Pliki specyficzne dla róznych BSD.
 
 %package platform-cisco
 Summary:	Cisco specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla Cisco
+Summary(pl.UTF-8):	Pliki specyficzne dla Cisco
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -171,7 +171,7 @@ Pliki specyficzne dla Cisco.
 
 %package platform-procurve
 Summary:	HP Procurve specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla HP Procurve
+Summary(pl.UTF-8):	Pliki specyficzne dla HP Procurve
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -183,7 +183,7 @@ Pliki specyficzne dla HP Procurve.
 
 %package platform-solaris
 Summary:	Solaris specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla Solarisa
+Summary(pl.UTF-8):	Pliki specyficzne dla Solarisa
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
@@ -195,7 +195,7 @@ Pliki specyficzne dla Solarisa.
 
 %package platform-macosx
 Summary:	MacOS X specific files
-Summary(pl.UTF-8):   Pliki specyficzne dla MacOS X
+Summary(pl.UTF-8):	Pliki specyficzne dla MacOS X
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 
