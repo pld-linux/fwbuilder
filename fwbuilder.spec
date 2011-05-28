@@ -5,7 +5,7 @@ Summary:	Firewall Builder
 Summary(pl.UTF-8):	Narzędzie do tworzenia firewalli
 Name:		fwbuilder
 Version:	%{_majver}.%{_minver}.2.3541
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
@@ -23,12 +23,12 @@ BuildRequires:	QtNetwork-devel >= 4.3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-#BuildRequires:	libfwbuilder-devel = %{version}
 BuildRequires:	qt4-build
 BuildRequires:	qt4-qmake
-#Requires:	libfwbuilder = %{version}
 Obsoletes:	fwbuilder-devel
 Obsoletes:	fwbuilder-doc
+Obsoletes:	libfwbuilder
+Obsoletes:	libfwbuilder-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -248,9 +248,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/fwbedit
 %attr(755,root,root) %{_bindir}/fwbuilder
 %dir %{_datadir}/%{name}
+%{_datadir}/%{name}/fwbuilder.dtd
 %{_datadir}/%{name}/*.xml
 %dir %{_datadir}/%{name}/configlets
 %dir %{_datadir}/%{name}/locale
+%{_datadir}/%{name}/migration
 %dir %{_datadir}/%{name}/os
 %{_datadir}/%{name}/os/unknown_os.xml
 %{_datadir}/%{name}/os/endian.xml
@@ -339,6 +341,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files platform-cisco
 %defattr(644,root,root,755)
+%{_datadir}/%{name}/configlets/fwsm_os
 %{_datadir}/%{name}/configlets/ios
 %{_datadir}/%{name}/configlets/pix_os
 %{_datadir}/%{name}/os/ios.xml
