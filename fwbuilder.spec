@@ -1,15 +1,15 @@
 #
-%define		_majver		4
-%define		_minver		2
+%define		_majver		5
+%define		_minver		1
 Summary:	Firewall Builder
 Summary(pl.UTF-8):	Narzędzie do tworzenia firewalli
 Name:		fwbuilder
-Version:	%{_majver}.%{_minver}.2.3541
-Release:	3
+Version:	%{_majver}.%{_minver}.0.3599
+Release:	0.1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
-# Source0-md5:	56ddc67c79adaf5d5730945ad1a26666
+# Source0-md5:	331ce22eb8fb770a70395c3744f5092f
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-configure.patch
@@ -237,7 +237,9 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 # drop 512x512 icon
-rm -rf $RPM_BUILD_ROOT%{_iconsdir}/hicolor/512x512
+%{__rm} -r $RPM_BUILD_ROOT%{_iconsdir}/hicolor/512x512
+
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -251,7 +253,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/fwbuilder.dtd
 %{_datadir}/%{name}/*.xml
 %dir %{_datadir}/%{name}/configlets
-%dir %{_datadir}/%{name}/locale
+%{_datadir}/%{name}/help
 %{_datadir}/%{name}/migration
 %dir %{_datadir}/%{name}/os
 %{_datadir}/%{name}/os/unknown_os.xml
@@ -312,7 +314,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files platform-linux24
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/transfer_secuwall
 %{_datadir}/%{name}/configlets/dd-wrt-jffs
 %{_datadir}/%{name}/configlets/dd-wrt-nvram
 %{_datadir}/%{name}/configlets/ipcop

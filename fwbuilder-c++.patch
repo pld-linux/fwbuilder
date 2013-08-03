@@ -27,3 +27,13 @@
      { return (str == _d.second); }
  };
  
+--- fwbuilder-5.1.0.3599/src/libfwbuilder/src/fwbuilder/ThreadTools.h~	2012-03-23 07:10:54.000000000 +0100
++++ fwbuilder-5.1.0.3599/src/libfwbuilder/src/fwbuilder/ThreadTools.h	2013-08-03 11:55:39.224043574 +0200
+@@ -31,6 +31,7 @@
+ 
+ #include <time.h> //for time_t definition
+ #include <pthread.h>
++#include <sys/types.h>
+ 
+ #include <string>
+ #include <queue>
