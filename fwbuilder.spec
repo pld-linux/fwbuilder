@@ -22,7 +22,7 @@ BuildRequires:	QtGui-devel >= 4.3
 BuildRequires:	QtNetwork-devel >= 4.3
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	qt4-build
 BuildRequires:	qt4-qmake
 Obsoletes:	fwbuilder-devel
