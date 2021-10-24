@@ -1,0 +1,17 @@
+--- fwbuilder-5.1.0.3599/qmake.inc.in~	2012-03-23 07:10:54.000000000 +0100
++++ fwbuilder-5.1.0.3599/qmake.inc.in	2021-10-24 21:40:34.809627661 +0200
+@@ -35,10 +35,10 @@
+     MOC_DIR = .moc
+     OBJECTS_DIR = .obj
+ 
+-    QMAKE_CFLAGS_DEBUG += -Wno-unused-parameter
+-    QMAKE_CFLAGS_RELEASE += -Wno-unused-parameter
+-    QMAKE_CXXFLAGS_DEBUG += -Wno-unused-parameter
+-    QMAKE_CXXFLAGS_RELEASE += -Wno-unused-parameter
++    QMAKE_CFLAGS_DEBUG += -Wno-unused-parameter $$(OPTFLAGS)
++    QMAKE_CFLAGS_RELEASE += -Wno-unused-parameter $$(OPTFLAGS)
++    QMAKE_CXXFLAGS_DEBUG += -Wno-unused-parameter $$(OPTFLAGS)
++    QMAKE_CXXFLAGS_RELEASE += -Wno-unused-parameter $$(OPTFLAGS)
+ 
+     !macx {
+ 

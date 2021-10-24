@@ -5,7 +5,7 @@ Summary:	Firewall Builder
 Summary(pl.UTF-8):	Narzędzie do tworzenia firewalli
 Name:		fwbuilder
 Version:	%{_majver}.%{_minver}.0.3599
-Release:	4
+Release:	5
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/fwbuilder/%{name}-%{version}.tar.gz
@@ -15,6 +15,7 @@ Source2:	%{name}.png
 Patch0:		%{name}-configure.patch
 Patch1:		%{name}-c++.patch
 Patch2:		%{name}-dont-mess-with-compiler-names-and-ccache.patch
+Patch3:		opt.patch
 URL:		http://www.fwbuilder.org/
 BuildRequires:	QtCore-devel >= 4.3
 BuildRequires:	QtDBus-devel >= 4.3
@@ -210,17 +211,22 @@ Pliki specyficzne dla MacOS X.
 #%patch0 -p1
 %patch1 -p1
 #%patch2 -p1
+%patch3 -p1
 
 %build
 export QTDIR="%{_usr}"
 export QMAKESPEC="%{_datadir}/qt4/mkspecs/linux-g++"
+export OPTFLAGS="%{rpmcxxflags} -std=c++11"
+export CXXFLAGS="%{rpmcxxflags} -std=c++11"
 
 cp -f /usr/share/automake/config.* .
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %configure \
 	--with-templatedir=%{_datadir}/fwbuilder \
 	--with-qmake=qmake-qt4
+
 %{__make}
 
 %install
